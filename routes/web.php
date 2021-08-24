@@ -29,8 +29,14 @@ Route::get('/login', function () {
     return view('login');
 });
 
+//Login And Register
+Route::get('/login',[UserController::class,'login'])->name('login');
+Route::get('/register',[UserController::class,'register'])->name('register');
+
+
 //Proses Login
 Route::post('/proses_login',[AuthController::class,'proses_login']);
+Route::get('/logout',[AuthController::class,'logout']);
 
 
 
@@ -41,6 +47,7 @@ Route::group(['middleware' => ['cek_login:999']],function(){
     Route::get('/lapor',[UserController::class,'home'])->name('user');
     Route::get('/daftar/laporan',[UserController::class,'v_laporan'])->name('v_laporan');
     Route::post('/simpan/laporan',[LaporanController::class,'simpan_laporan']);
+    Route::get('/tanggapan/{id}',[UserController::class,'v_tanggapan']);
 
 });
 });

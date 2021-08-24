@@ -18,6 +18,10 @@
           <li class="nav-item">
             <a href="/daftar/laporan" class="nav-link {{ request()->is('daftar/laporan') ? 'active' : '' }}">Daftar Laporan</a>
           </li>
+          <li class="nav-item">
+            <a href="/logout" class="nav-link">Keluar</a>
+          </li>
+          
         </ul>
 
       <!-- Right navbar links -->
@@ -25,5 +29,8 @@
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
       </ul>
+      
     </div>
+    
   </nav>
+  

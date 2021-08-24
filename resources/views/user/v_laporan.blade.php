@@ -20,7 +20,7 @@
             <?php $i=1?>
             @foreach ($laporan as $data)
                 <tr>
-                <td>{{ $data->id }}</td>
+                <td>{{ $data->id_pengaduan }}</td>
                 <td>{{ $data->judul }}</td>
                 @if ($data->status == 66)
                 <td>Ditolak</td>
@@ -32,13 +32,37 @@
                 <td>Selesai</td>
                 @endif  
                   <td>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id }}">
-                      Detail
-                    </button>
+
+                    @if ($data->status == 1)
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_pengaduan }}">
+                        Detail
+                      </button>
+                    @elseif($data->status == 2)
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_pengaduan }}">
+                        Detail
+                      </button>
+
+                      <a href="/tanggapan/{{ $data->id_pengaduan }}" class="btn btn-info">
+                        <span class="text">Tanggapan</span>
+                    </a> 
+                    @elseif($data->status == 3)
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_pengaduan }}">
+                        Detail
+                      </button>
+                      <a href="/tanggapan/{{ $data->id_pengaduan }}" class="btn btn-info">
+                        <span class="text">Tanggapan</span>
+                    </a> 
+                    @else 
+                      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alasanModal{{ $data->id_pengaduan }}">
+                        Ditolak
+                      </button>
+                    @endif
+                    
+                    
                   </td>
                   
                 </tr>
+                
             @endforeach
             
 
@@ -53,13 +77,15 @@
   <!-- /.col -->
 <!-- /.row -->
 <!-- /.container-fluid -->
+
+{{-- Detail Data --}}
 </section>
 @foreach ($laporan as $data)
-<div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal{{ $data->id_pengaduan }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_pengaduan }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -103,17 +129,72 @@
               <label class="col-form-label" for="inputSuccess"> Isi</label>
               <textarea name="" id="" class="form-control" row="7">{{ $data->isi }}</textarea>
             </div>
-              
-          </div>
+            <div class="form-group">
+              <label class="col-form-label">Unit</label>
+              <input type="text" class="form-control" value="{{ $data->kd}}">
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Bukti Foto:</label><br>
+                <img src="{{ url('file_laporan/'.$data->foto) }}" width="400">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Bukti Foto:</label><br>
+                <img src="{{ url('file_laporan/'.$data->foto) }}" width="400">
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Bukti Foto:</label><br>
+                <img src="{{ url('file_laporan/'.$data->foto) }}" width="400">
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
 @endforeach
+
+{{-- Alasan Tolak --}}
+@foreach ($laporan as $data)
+<div class="modal fade" id="alasanModal{{ $data->id_pengaduan }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_pengaduan }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <form>
+            <div class="modal-body">
+              <label for="">Alasan Laporan Ditolak :</label>
+              <p>{{ $data->alasan }}</p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
 @endsection

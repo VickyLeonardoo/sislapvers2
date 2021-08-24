@@ -44,6 +44,5 @@ class LaporanModel extends Model
     public function tambahData($data)
     {
         DB::table('pengaduan')->insert($data);
-
     }
 }

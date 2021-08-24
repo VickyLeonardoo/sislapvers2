@@ -22,7 +22,7 @@ class AdminController extends Controller
         $masuk = DB::table('pengaduan')->where('status','1')->count();
         $proses = DB::table('pengaduan')->where('status','2')->count();
         $selesai = DB::table('pengaduan')->where('status','3')->count();
-        return view('home', compact('masuk','proses','selesai'));
+        return view('admin.home', compact('masuk','proses','selesai'));
     }
 
     public function v_lap_masuk()
@@ -33,7 +33,7 @@ class AdminController extends Controller
         ];
 
         
-        return view('v_lap_masuk',$data);
+        return view('admin.v_lap_masuk',$data);
     }
 
     public function v_lap_proses()
@@ -41,7 +41,7 @@ class AdminController extends Controller
         $data = [
             'laporan' => $this->LaporanModel->v_lap_proses()
         ];
-        return view('v_lap_proses',$data);
+        return view('admin.v_lap_proses',$data);
     }
 
     public function v_lap_selesai()
@@ -49,7 +49,7 @@ class AdminController extends Controller
         $data = [
             'laporan' => $this->LaporanModel->v_lap_selesai()
         ];
-        return view('v_lap_selesai',$data);
+        return view('admin.v_lap_selesai',$data);
     }
 
     public function detail()
