@@ -83,4 +83,18 @@ class LaporanController extends Controller
         return redirect()->route('user')->with('pesan','Data Berhasil Di Tambahkan !!');
     
     }
+
+    public function update_laporan($id)
+    {
+        if (Auth::guard('user')->user()->level == 2) {
+            $data = [
+                'unit' => Request()->unit,
+                'kd' => Request()->unit,
+                'status' => 2,
+                'investigasi' => Request()->investigasi,
+            ];
+        $this->LaporanModel->ubahData($id,$data);
+        return redirect()->route('masuk');
+        }
+    }
 }

@@ -62,7 +62,8 @@
       </div>
       <div class="modal-body">
         <div class="card-body">
-          <form>
+          <form method="POST" action="/laporan/update/{{ $data->id_pengaduan }}">
+            @csrf
             <div class="row">
               <div class="col-sm-6">
                 <!-- text input -->
@@ -124,24 +125,34 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label>Unit</label>
-              <select name="unit" class="form-control" id="">
-                <option value="{{ $data->kd }}">{{ $data->kd }}</option>
-                <option disabled>--Pilih--</option>
-            
-              @foreach ($unit as $data)
-                  <option value="{{ $data->kode }}">{{ $data->nama_div }}
-                  </option>
-              @endforeach 
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Tindak Lanjut</label>
+                <select class="form-control" name="investigasi">
+                          <option value="1">Butuh Investigasi</option>
+                          <option value="2">Butuh Balasan Unit</option>
               </select>
-            </div>
-          </form>
+              </div>
+              <div class="form-group">
+                <label>Unit</label>
+                <select name="unit" class="form-control" id="">
+                  <option value="{{ $data->kd }}">{{ $data->kd }}</option>
+                  <option disabled>--Pilih--</option>
+              
+                @foreach ($unit as $data)
+                    <option value="{{ $data->kode }}">{{ $data->nama_div }}
+                    </option>
+                @endforeach 
+                </select>
+              </div>
+            
+            
+          
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <input type="submit" class="btn btn-primary" value="Simpan">
+      </form>
       </div>
     </div>
   </div>

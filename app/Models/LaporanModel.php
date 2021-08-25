@@ -45,4 +45,9 @@ class LaporanModel extends Model
     {
         DB::table('pengaduan')->insert($data);
     }
+
+    public function ubahData($id,$data)
+    {
+        DB::table('pengaduan')->where('id_pengaduan',$id)->update($data);
+    }
 }

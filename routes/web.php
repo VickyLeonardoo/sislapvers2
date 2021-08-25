@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporanController;
@@ -59,5 +60,24 @@ Route::group(['middleware' => ['cek_login:2']],function(){
     Route::get('/laporan/masuk',[AdminController::class,'v_lap_masuk'])->name('masuk');
     Route::get('/laporan/proses',[AdminController::class,'v_lap_proses'])->name('proses');
     Route::get('/laporan/selesai',[AdminController::class,'v_lap_selesai'])->name('selesai');
+    Route::post('/laporan/update/{id}',[LaporanController::class,'update_laporan']);
+
 });
 });
+
+//Route Administrator
+Route::group(['middleware' => ['auth:user']],function(){
+Route::group(['middleware' => ['cek_login:99']],function(){
+    Route::get('/administrator',[AdministratorController::class,'home'])->name('administrator');
+    Route::get('/administrator/data/admin',[AdministratorController::class,'v_data_admin']);
+    Route::get('/administrator/data/unit',[AdministratorController::class,'v_data_unit']);
+    Route::get('/administrator/data/manajemen',[AdministratorController::class,'v_data_manajemen']);
+    Route::get('/administrator/data/divisi',[AdministratorController::class,'v_data_divisi']);
+    Route::post('/administrator/tambah/admin',[AdministratorController::class,'tambah_admin']);
+    Route::post('/administrator/tambah/unit',[AdministratorController::class,'tambah_unit']);
+    Route::post('/administrator/tambah/manajemen',[AdministratorController::class,'tambah_manjemen']);
+    Route::post('/administrator/tambah/divisi',[AdministratorController::class,'tambah_divisi']);
+        
+});
+});
+    
