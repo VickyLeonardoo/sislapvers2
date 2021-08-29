@@ -51,5 +51,23 @@ class UserController extends Controller
         ];
         return view('user.v_tanggapan',$data);
     }
+
+    public function laporan_puas($id)
+    {
+        $data = [
+            'respon' => 1,
+        ];
+        $this->LaporanModel->ubahData($id,$data);
+        return redirect()->route('v_laporan');
+    }
+
+    public function laporan_kurang($id)
+    {
+        $data = [
+            'respon' => 2,
+        ];
+        $this->LaporanModel->ubahData($id,$data);
+        return redirect()->route('user');
+    }
     
 }

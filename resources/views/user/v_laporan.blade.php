@@ -54,7 +54,7 @@
                     </a> 
                     @else 
                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alasanModal{{ $data->id_pengaduan }}">
-                        Ditolak
+                        Alasan
                       </button>
                     @endif
                     
@@ -92,7 +92,8 @@
       </div>
       <div class="modal-body">
         <div class="card-body">
-          <form>
+          <form method="POST">
+            @csrf
             <div class="row">
               <div class="col-sm-6">
                 <!-- text input -->
@@ -157,12 +158,14 @@
                 </div>
               </div>
             </div>
-          </form>
         </div>
       </div>
       <div class="modal-footer">
+        <input type="submit" class="btn btn-info" value="Puas" formaction="/laporan/puas/{{ $data->id_pengaduan }}">
+        <input type="submit" class="btn btn-primary" value="Tidak Puas" formaction="/laporan/kurang/{{ $data->id_pengaduan }}">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
+    </form>
     </div>
   </div>
 </div>

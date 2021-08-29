@@ -7,6 +7,8 @@ use DB;
 use Hash;
 use App\Models\AdministratorModel;
 use App\Models\UnitModel;
+use App\Models\LaporanModel;
+
 
 class AdministratorController extends Controller
 {
@@ -14,6 +16,7 @@ class AdministratorController extends Controller
     {
         $this->AdministratorModel = new AdministratorModel;
         $this->UnitModel = new UnitModel;
+        $this->LaporanModel = new LaporanModel;
     }
     public function home()
     {
@@ -25,8 +28,12 @@ class AdministratorController extends Controller
         $data = [
             'div' => $this->UnitModel->v_unit(),
         ];
+        $masuk = DB::table('pengaduan')->where('status','1')->count();
+        $selesai = DB::table('pengaduan')->where('status','3')->count();
+        $proses = DB::table('pengaduan')->where('status','2')->count();
+        $tolak = DB::table('pengaduan')->where('status','66')->count();
 
-        return view('administrator.home',$data,compact('admin','unit','manajemen','divisi'));
+        return view('administrator.home',$data,compact('admin','unit','manajemen','divisi','masuk','proses','selesai','tolak'));
     }
     
     public function v_data_admin()
@@ -115,4 +122,41 @@ class AdministratorController extends Controller
         $this->AdministratorModel->tambah_divisi($data);       
         return redirect()->route('administrator')->with('berhasil','Kamu Berhasil Mendaftar,Silahkan Login!');
     }
+
+    public function v_laporan_masuk()
+    {
+        $data = [
+            'laporan' => $this->LaporanModel->v_lap_masuk(),
+            'unit' => $this->LaporanModel->v_unit(),
+        ];
+        return view('administrator.v_laporan_masuk',$data);
+    }
+
+    public function v_laporan_proses()
+    {
+        $data = [
+            'laporan' => $this->LaporanModel->v_lap_proses(),
+            'unit' => $this->LaporanModel->v_unit(),
+        ];
+        return view('administrator.v_laporan_proses',$data);
+    }
+
+    public function v_laporan_selesai()
+    {
+        $data = [
+            'laporan' => $this->LaporanModel->v_lap_selesai(),
+            'unit' => $this->LaporanModel->v_unit(),
+        ];
+        return view('administrator.v_laporan_selesai',$data);
+    }
+
+    public function v_laporan_ditolak()
+    {
+        $data = [
+            'laporan' => $this->LaporanModel->v_laporan_ditolak(),
+            'unit' => $this->LaporanModel->v_unit(),
+        ];
+        return view('administrator.v_laporan_ditolak',$data);
+    }
+    
 }

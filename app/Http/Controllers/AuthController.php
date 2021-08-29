@@ -25,7 +25,7 @@ class AuthController extends Controller
                 }elseif ($user->level == '3') {
                     return redirect()->intended('manajemen');
                 }elseif ($user->level == '4') {
-                    return redirect()->intended('sbak');
+                    return redirect()->intended('unit');
                 }
                 elseif ($user->level == '99') {
                     return redirect()->intended('administrator');

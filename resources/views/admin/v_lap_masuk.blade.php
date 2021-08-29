@@ -30,6 +30,10 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_pengaduan }}">
                               Detail
                             </button>
+
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#tolakModal{{ $data->id_pengaduan }}">
+                              Tolak
+                            </button>
                           </td>
                           
                         </tr>
@@ -47,7 +51,7 @@
           <!-- /.col -->
         <!-- /.row -->
       <!-- /.container-fluid -->
-    </section>
+
     
 <!-- Modal -->
 @foreach ($laporan as $data)
@@ -129,7 +133,7 @@
               <div class="form-group">
                 <label>Tindak Lanjut</label>
                 <select class="form-control" name="investigasi">
-                          <option value="1">Butuh Investigasi</option>
+                          <option value="3">Butuh Investigasi</option>
                           <option value="2">Butuh Balasan Unit</option>
               </select>
               </div>
@@ -145,9 +149,37 @@
                 @endforeach 
                 </select>
               </div>
-            
-            
-          
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="Simpan">
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
+
+<!-- Modal -->
+@foreach ($laporan as $data)
+<div class="modal fade" id="tolakModal{{ $data->id_pengaduan }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_pengaduan }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <form method="POST" action="/laporan/tolak/{{ $data->id_pengaduan }}">
+            @csrf
+                <!-- text input -->
+                <div class="form-group">
+                  <label>Alasan Penolakan : </label>
+                  <textarea class="form-control" rows="5" name="alasan"></textarea>
+                </div>
         </div>
       </div>
       <div class="modal-footer">

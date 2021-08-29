@@ -12,12 +12,50 @@ class LaporanModel extends Model
 
    public function v_lap_masuk()
     {
-        return DB::table('pengaduan')->where('status', '1')->get();
+        if (Auth::guard('user')->user()->level == 2) {
+            return DB::table('pengaduan')->where('status', '1')->get();
+        }elseif (Auth::guard('user')->user()->level == 4) {
+            return DB::table('pengaduan')
+            ->where('status','2')
+            ->where('investigasi','2')
+            ->where('id_divisi', Auth::guard('user')->user()->kode)
+            ->get();
+        }elseif(Auth::guard('user')->user()->level == 3){
+            return DB::table('pengaduan')
+            ->where('status','2')
+            ->where('investigasi','3')
+            ->get();
+        }elseif(Auth::guard('user')->user()->level == 99){
+            return DB::table('pengaduan')
+            ->where('status','1')
+            ->get();
+        }
+        
     }
 
     public function v_lap_proses()
     {
-        return DB::table('pengaduan')->where('status', '2')->get();
+        if (Auth::guard('user')->user()->level == 2) {
+            return DB::table('pengaduan')->where('status', '2')->get();
+        }
+        elseif (Auth::guard('user')->user()->level == 3){
+            return DB::table('pengaduan')
+            ->where('status','2')
+            ->where('investigasi','1')
+            ->get();
+        }
+        elseif (Auth::guard('user')->user()->level == 4){
+            return DB::table('pengaduan')
+            ->where('status','2')
+            ->where('investigasi','1')
+            ->get();
+        }
+        elseif (Auth::guard('user')->user()->level == 99){
+            return DB::table('pengaduan')
+            ->where('status','2')
+            ->get();
+        }
+       
     }
 
     public function v_unit()
@@ -27,7 +65,25 @@ class LaporanModel extends Model
 
     public function v_lap_selesai()
     {
-        return DB::table('pengaduan')->where('status', '3')->get();
+        if (Auth::guard('user')->user()->level == 2) {
+            return DB::table('pengaduan')->where('status', '3')->get();
+        }
+        elseif(Auth::guard('user')->user()->level == 4){
+            return DB::table('pengaduan')
+            ->where('status', '3')
+            ->where('investigasi','2')
+            ->where('id_divisi', Auth::guard('user')->user()->kode)
+            ->get();
+        }
+        elseif(Auth::guard('user')->user()->level == 99){
+            return DB::table('pengaduan')
+            ->where('status', '4')
+            ->get();
+        }
+    }
+
+    public function v_laporan_ditolak(){
+        return DB::table('pengaduan')->where('status','66')->get();
     }
 
     public function v_laporan()
@@ -36,10 +92,6 @@ class LaporanModel extends Model
         ->where('id_pelapor', Auth::guard('pelapor')->user()->id)
         ->get();
     }
-    // public function detail()
-    // {
-        
-    // }
 
     public function tambahData($data)
     {

@@ -24,36 +24,14 @@ class AdminController extends Controller
         $selesai = DB::table('pengaduan')->where('status','3')->count();
         return view('admin.home', compact('masuk','proses','selesai'));
     }
-
-    public function v_lap_masuk()
+   
+    public function tolak_laporan($id)
     {
         $data = [
-            'laporan' => $this->LaporanModel->v_lap_masuk(),
-            'unit' => $this->LaporanModel->v_unit(),
+            'status' => 66,
+            'alasan' => Request()->alasan,
         ];
-
-        
-        return view('admin.v_lap_masuk',$data);
-    }
-
-    public function v_lap_proses()
-    {
-        $data = [
-            'laporan' => $this->LaporanModel->v_lap_proses()
-        ];
-        return view('admin.v_lap_proses',$data);
-    }
-
-    public function v_lap_selesai()
-    {
-        $data = [
-            'laporan' => $this->LaporanModel->v_lap_selesai()
-        ];
-        return view('admin.v_lap_selesai',$data);
-    }
-
-    public function detail()
-    {
-        
+        $this->LaporanModel->ubahData($id,$data);
+        return redirect()->route('masuk');
     }
 }

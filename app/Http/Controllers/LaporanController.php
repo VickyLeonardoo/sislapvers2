@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\LaporanModel;
+use App\Models\TanggapanModel;
 use Carbon\Carbon;
 use Auth;
+
 
 class LaporanController extends Controller
 {
@@ -14,6 +16,7 @@ class LaporanController extends Controller
     public function __construct()
     {
         $this->LaporanModel = new LaporanModel;
+        $this->TanggapanModel = new TanggapanModel;
     }
 
     public function simpan_laporan()
@@ -96,5 +99,186 @@ class LaporanController extends Controller
         $this->LaporanModel->ubahData($id,$data);
         return redirect()->route('masuk');
         }
+        elseif (Auth::guard('user')->user()->level == 4) {
+            $data = [
+                'status' => 3,
+                'investigasi' => 2,
+                'id_divisi' => Request()->id_divisi,
+            ];
+        $this->LaporanModel->ubahData($id,$data);
+        return redirect()->route('u_masuk');
+        }
+        elseif (Auth::guard('user')->user()->level == 3) {
+            $data = [
+                'status' => 2,
+                'investigasi' => 2,
+                'kd' => Request()->unit,
+                'unit' => Request()->unit,
+            ];
+        $this->LaporanModel->ubahData($id,$data);
+        return redirect()->route('m_masuk');
+        }
     }
+
+    public function ubah_laporan_inv($id)
+    {
+        $data = [
+            'status' => 2,
+            'investigasi' => 1,
+            'kd' => Request()->unit,
+            'unit' => Request()->unit,
+        ];
+    $this->LaporanModel->ubahData($id,$data);
+    return redirect()->route('m_masuk');
+    }
+
+    public function v_lap_masuk()
+    {
+        if (Auth::guard('user')->user()->level == 4) {
+            $data = [
+                'laporan' => $this->LaporanModel->v_lap_masuk(),
+                'unit' => $this->LaporanModel->v_unit(),
+            ];
+            return view('unit.v_lap_masuk',$data);
+        }
+        elseif (Auth::guard('user')->user()->level == 3) {
+            $data = [
+                'laporan' => $this->LaporanModel->v_lap_masuk(),
+                'unit' => $this->LaporanModel->v_unit(),
+            ];
+            return view('manajemen.v_lap_masuk',$data);
+        }
+        elseif(Auth::guard('user')->user()->level == 2)
+        {
+            $data = [
+                'laporan' => $this->LaporanModel->v_lap_masuk(),
+                'unit' => $this->LaporanModel->v_unit(),
+            ];
+            return view('admin.v_lap_masuk',$data);
+        }
+        
+    }
+
+    public function v_lap_proses()
+    {
+        if (Auth::guard('user')->user()->level == 2) {
+            $data = [
+                'laporan' => $this->LaporanModel->v_lap_proses()
+            ];
+            return view('admin.v_lap_proses',$data);
+        }
+        elseif (Auth::guard('user')->user()->level == 3) {
+            $data = [
+                'laporan' => $this->LaporanModel->v_lap_proses(),
+                'unit' => $this->LaporanModel->v_unit(),
+            ];
+            return view('manajemen.v_lap_investigasi',$data);
+        }
+        
+    }
+
+    public function v_lap_selesai()
+    {
+        if (Auth::guard('user')->user()->level == 2) {
+            $data = [
+                'laporan' => $this->LaporanModel->v_lap_selesai()
+           ];
+           return view('admin.v_lap_selesai',$data);
+        }
+        elseif(Auth::guard('user')->user()->level == 3){
+            $data = [
+                'laporan' => $this->LaporanModel->v_lap_selesai()
+            ];
+            return view('manajemen.v_lap_selesai',$data);
+        }
+        elseif(Auth::guard('user')->user()->level == 4){
+            $data = [
+                'laporan' => $this->LaporanModel->v_lap_selesai()
+            ];
+            return view('unit.v_lap_selesai',$data);
+        }
+    }
+
+    public function selesaikan_laporan($id)
+    {
+
+    }
+
+    public function tanggapi()
+    {
+        if (Auth::guard('user')->user()->level == 4) {
+            $data = [
+                'tanggapan' => Request()->tanggapan,
+                'id_pengaduan' => Request()->id,
+                'tgl_tanggapan'=> Carbon::now()->format('Y-m-d'),
+                'status_tanggapan' => 1,
+            ];
+            $this->TanggapanModel->tanggapi($data);
+            return redirect()->route('u_masuk');
+        }
+        elseif (Auth::guard('user')->user()->level == 3) {
+            $data = [
+                'tanggapan' => Request()->tanggapan,
+                'id_pengaduan' => Request()->id,
+                'tgl_tanggapan'=> Carbon::now()->format('Y-m-d'),
+                'status_tanggapan' => 4,
+            ];
+            $this->TanggapanModel->tanggapi($data);
+            return redirect()->route('m_investigasi');
+        }
+       
+    }
+
+    public function kirim_tanggapan($id)
+    {
+        $data = [
+            'status_tanggapan' => 4,
+        ];
+        $this->TanggapanModel->kirim_tanggapan($id,$data);
+        return redirect()->route('m_tanggapan');
+    }
+
+    public function kembalikan_tanggapan($id)
+    {
+        $data = [
+            'id_pengaduan' => Request()->id_pengaduan,
+            'id_tanggapan' => Request()->id_tanggapan,
+            'alasan_tolak' => Request()->komentar,
+        ];
+
+        $update = [
+            'status_tanggapan' => 2,
+        ];
+
+        $this->TanggapanModel->kembalikanTanggapan($data);  
+        $this->TanggapanModel->kirim_tanggapan($id,$update);     
+        return redirect()->route('m_tanggapan');
+    }
+
+    public function perbaiki_tanggapan($id)
+    {
+        $data = [
+            'tanggapan' => Request()->tanggapan,
+            'id_pengaduan' => Request()->id_pengaduan,
+            'tgl_tanggapan'=> Carbon::now()->format('Y-m-d'),
+            'status_tanggapan' => 1,
+        ];
+
+        $update = [
+            'status_tanggapan' => 3,
+        ];
+
+        $this->TanggapanModel->tanggapi($data);
+        $this->TanggapanModel->updateTanggapan($id,$update);
+        return redirect()->route('u_tanggapan');
+    }
+
+    public function suksesTanggapan($id)
+    {
+        $data = [
+            'laporan' => $this->TanggapanModel->tanggapanSukses($id),
+        ];
+        return view('unit.v_tanggapan_s',$data);
+    }
+
 }

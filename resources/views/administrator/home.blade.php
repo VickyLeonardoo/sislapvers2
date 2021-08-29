@@ -62,6 +62,68 @@
     </div>
   </div> 
 
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-warning">
+      <div class="inner">
+        <h3>{{ $tolak }}</h3>
+
+        <p>Laporan Ditolak</p>
+      </div>
+      <div class="icon">
+        <i class="far fa-clipboard"></i>
+      </div>
+      <a href="#exampleModalAdmin" class="small-box-footer" data-toggle="modal" data-target="#exampleModalAdmin">Tambah Admin <i class="fas fa-plus"></i></a>
+      <a href="/administrator/data/admin" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <!-- ./col -->
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{ $masuk }}</h3>
+
+        <p>Laporan Masuk</p>
+      </div>
+      <div class="icon">
+        <i class="far fa-clipboard"></i>
+      </div>
+      <a href="#exampleModalUnit" class="small-box-footer" data-toggle="modal" data-target="#exampleModalUnit">Tambah Unit <i class="fas fa-plus"></i></a>
+      <a href="/administrator/data/unit" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-success">
+      <div class="inner">
+        <h3>{{ $proses }}</h3>
+
+        <p>Laporan Di Proses</p>
+      </div>
+      <div class="icon">
+        <i class="far fa-clipboard"></i>
+      </div>
+      <a href="#exampleModalMan" class="small-box-footer" data-toggle="modal" data-target="#exampleModalMan">Tambah Manajemen <i class="fas fa-plus"></i></a>
+      <a href="/administrator/data/manajemen" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div>  
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-secondary">
+      <div class="inner">
+        <h3>{{ $selesai }}</h3>
+
+        <p>Laporan Selesai</p>
+      </div>
+      <div class="icon">
+        <i class="far fa-clipboard"></i>
+      </div>
+      <a href="#exampleModalDiv" class="small-box-footer" data-toggle="modal" data-target="#exampleModalDiv">Tambah Divisi <i class="fas fa-plus"></i></a>
+      <a href="/administrator/data/divisi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div> 
+  
 {{-- Modal Admin --}}
 <div class="modal fade" id="exampleModalAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
@@ -102,7 +164,7 @@
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Username</label>
-                  <input type="text" class="form-control" value="" name="username">
+                  <input type="text" class="form-control" value="" name="username" autocomplete="off">
                 </div>
               </div>
             </div>
@@ -111,7 +173,7 @@
                 <!-- textarea -->
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" class="form-control" value="" name="password">
+                  <input type="password" class="form-control" value="" name="password" autocomplete="off">
                 </div>
               </div>
             </div>

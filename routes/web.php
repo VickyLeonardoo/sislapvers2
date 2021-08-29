@@ -6,6 +6,8 @@ use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\ManajemenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +19,6 @@ use App\Http\Controllers\LaporanController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('home');
-// });
-
-// Route::get('/laporan/masuk', function () {
-//     return view('v_lap_masuk');
-// });
 
 Route::get('/login', function () {
     return view('login');
@@ -49,6 +43,9 @@ Route::group(['middleware' => ['cek_login:999']],function(){
     Route::get('/daftar/laporan',[UserController::class,'v_laporan'])->name('v_laporan');
     Route::post('/simpan/laporan',[LaporanController::class,'simpan_laporan']);
     Route::get('/tanggapan/{id}',[UserController::class,'v_tanggapan']);
+    Route::post('/laporan/puas/{id}',[UserController::class,'laporan_puas']);
+    Route::post('/laporan/kurang/{id}',[UserController::class,'laporan_kurang']);
+
 
 });
 });
@@ -57,11 +54,48 @@ Route::group(['middleware' => ['cek_login:999']],function(){
 Route::group(['middleware' => ['auth:user']],function(){
 Route::group(['middleware' => ['cek_login:2']],function(){
     Route::get('/',[AdminController::class,'home'])->name('home');
-    Route::get('/laporan/masuk',[AdminController::class,'v_lap_masuk'])->name('masuk');
-    Route::get('/laporan/proses',[AdminController::class,'v_lap_proses'])->name('proses');
-    Route::get('/laporan/selesai',[AdminController::class,'v_lap_selesai'])->name('selesai');
+    Route::get('/laporan/masuk',[LaporanController::class,'v_lap_masuk'])->name('masuk');
+    Route::get('/laporan/proses',[LaporanController::class,'v_lap_proses'])->name('proses');
+    Route::get('/laporan/selesai',[LaporanController::class,'v_lap_selesai'])->name('selesai');
     Route::post('/laporan/update/{id}',[LaporanController::class,'update_laporan']);
+    Route::post('/laporan/tolak/{id}',[AdminController::class,'tolak_laporan']);
 
+});
+});
+
+//Route Manajemen
+Route::group(['middleware' => ['auth:user']],function(){
+Route::group(['middleware' => ['cek_login:3']],function(){
+    Route::get('/manajemen',[ManajemenController::class,'home'])->name('manajemen');
+    Route::get('/manajemen/laporan/masuk',[LaporanController::class,'v_lap_masuk'])->name('m_masuk');
+    Route::get('/manajemen/laporan/selesai',[LaporanController::class,'v_lap_selesai'])->name('m_selesai');
+    Route::get('/manajemen/laporan/investigasi',[LaporanController::class,'v_lap_proses'])->name('m_investigasi');
+    Route::get('/manajemen/tanggapan/masuk',[ManajemenController::Class,'v_tanggapan'])->name('m_tanggapan');
+    Route::post('/manajemen/verifikasi/tanggapan/{id}',[LaporanController::Class,'kirim_tanggapan']);
+    Route::post('/manajemen/verifikasi/tanggapan/kembalikan/{id}',[LaporanController::Class,'kembalikan_tanggapan']);
+    Route::post('/manajemen/update/laporan/{id}',[LaporanController::Class,'update_laporan']);
+    Route::post('/manajemen/update/{id}',[LaporanController::Class,'ubah_laporan_inv']);
+    Route::post('/manajemen/laporan/tanggapi',[LaporanController::Class,'tanggapi']);
+
+
+    
+});
+});
+
+//Unit
+Route::group(['middleware' => ['auth:user']],function(){
+Route::group(['middleware' => ['cek_login:4']],function(){
+    Route::get('/unit',[UnitController::class,'home'])->name('unit');
+    Route::get('/unit/laporan/masuk',[LaporanController::class,'v_lap_masuk'])->name('u_masuk');
+    Route::get('/unit/laporan/selesai',[LaporanController::class,'v_lap_selesai'])->name('u_selesai');
+    Route::post('/unit/laporan/selesaikan/{id}',[LaporanController::class,'update_laporan']);
+    Route::post('/unit/laporan/tanggapi',[LaporanController::class,'tanggapi']);
+    Route::get('/unit/tanggapan/ditolak',[UnitController::class,'tanggapan_ditolak'])->name('u_tanggapan');
+    Route::post('/unit/laporan/revisi/tanggapan/{id}',[LaporanController::class,'perbaiki_tanggapan']);
+    Route::get('/unit/tanggapan/sukses/{id}',[LaporanController::class,'suksesTanggapan']);
+    Route::get('/unit/tanggapan/ditolak/{id}',[LaporanController::class,'v_tanggapan_tolak']);
+
+    
 });
 });
 
@@ -73,11 +107,14 @@ Route::group(['middleware' => ['cek_login:99']],function(){
     Route::get('/administrator/data/unit',[AdministratorController::class,'v_data_unit']);
     Route::get('/administrator/data/manajemen',[AdministratorController::class,'v_data_manajemen']);
     Route::get('/administrator/data/divisi',[AdministratorController::class,'v_data_divisi']);
+    Route::get('/administrator/laporan/masuk',[AdministratorController::class,'v_laporan_masuk']);
+    Route::get('/administrator/laporan/proses',[AdministratorController::class,'v_laporan_proses']);
+    Route::get('/administrator/laporan/selesai',[AdministratorController::class,'v_laporan_selesai']);
+    Route::get('/administrator/laporan/ditolak',[AdministratorController::class,'v_laporan_ditolak']);
     Route::post('/administrator/tambah/admin',[AdministratorController::class,'tambah_admin']);
     Route::post('/administrator/tambah/unit',[AdministratorController::class,'tambah_unit']);
     Route::post('/administrator/tambah/manajemen',[AdministratorController::class,'tambah_manjemen']);
     Route::post('/administrator/tambah/divisi',[AdministratorController::class,'tambah_divisi']);
-        
 });
 });
     

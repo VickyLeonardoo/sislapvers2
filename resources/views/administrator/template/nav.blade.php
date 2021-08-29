@@ -11,9 +11,9 @@
               </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Data
+                Data Petugas
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right"></span>
               </p>
@@ -41,6 +41,43 @@
                 <a href="/administrator/data/divisi" class="nav-link {{ request()->is('administrator/data/divisi') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Divisi</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-clipboard"></i>
+              <p>
+                Data Laporan
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/administrator/laporan/masuk" class="nav-link {{ request()->is('administrator/laporan/masuk') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Masuk</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/administrator/laporan/proses" class="nav-link {{ request()->is('administrator/laporan/proses') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Proses</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/administrator/laporan/selesai" class="nav-link {{ request()->is('administrator/laporan/selesai') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Selesai</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/administrator/laporan/ditolak" class="nav-link {{ request()->is('administrator/laporan/ditolak') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Ditolak</p>
                 </a>
               </li>
             </ul>
