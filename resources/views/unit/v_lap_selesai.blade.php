@@ -41,7 +41,7 @@
                             </span>
                             </a>
 
-                            <a href="/unit/tanggapan/ditolak/{{ $data->id_pengaduan }}" class="btn btn-danger">
+                            <a href="/unit/tanggapan/tolak/{{ $data->id_pengaduan }}" class="btn btn-danger">
                               <span class="icon text-white-50">
                                 <i class="fas fa-times"></i>
                             </span>

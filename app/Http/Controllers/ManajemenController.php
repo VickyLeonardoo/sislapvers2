@@ -42,10 +42,19 @@ class ManajemenController extends Controller
     public function v_tanggapan()
     {
         $data = [
-            'laporan' =>$this->TanggapanModel->v_tanggapan(),
+            'laporan' =>$this->TanggapanModel->v_tanggapanm(),
             'unit' =>$this->UnitModel->v_unit(),
         ];
         return view('manajemen.v_tanggapan',$data);
+    }
+
+    public function update_investigasi($id)
+    {
+        $data = [
+            'status' => 3,
+        ];
+        $this->LaporanModel->ubahData($id,$data);
+        return redirect()->route('m_investigasi');
     }
 
     

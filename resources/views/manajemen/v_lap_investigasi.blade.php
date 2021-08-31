@@ -73,7 +73,7 @@
       </div>
       <div class="modal-body">
         <div class="card-body">
-          <form method="POST" action="/laporan/update/{{ $data->id_pengaduan }}">
+          <form method="POST" action="/manajemen/laporan/selesaikan/{{ $data->id_pengaduan }}">
             @csrf
             <div class="row">
               <div class="col-sm-6">

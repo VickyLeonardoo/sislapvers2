@@ -64,16 +64,15 @@
 
   <div class="col-lg-3 col-6">
     <!-- small box -->
-    <div class="small-box bg-warning">
+    <div class="small-box bg-danger">
       <div class="inner">
         <h3>{{ $tolak }}</h3>
 
         <p>Laporan Ditolak</p>
       </div>
       <div class="icon">
-        <i class="far fa-clipboard"></i>
+        <i class="fas fa-times"></i>
       </div>
-      <a href="#exampleModalAdmin" class="small-box-footer" data-toggle="modal" data-target="#exampleModalAdmin">Tambah Admin <i class="fas fa-plus"></i></a>
       <a href="/administrator/data/admin" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
@@ -87,39 +86,36 @@
         <p>Laporan Masuk</p>
       </div>
       <div class="icon">
-        <i class="far fa-clipboard"></i>
+        <i class="fas fa-sign-in-alt"></i>
       </div>
-      <a href="#exampleModalUnit" class="small-box-footer" data-toggle="modal" data-target="#exampleModalUnit">Tambah Unit <i class="fas fa-plus"></i></a>
       <a href="/administrator/data/unit" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-3 col-6">
     <!-- small box -->
-    <div class="small-box bg-success">
+    <div class="small-box bg-primary">
       <div class="inner">
         <h3>{{ $proses }}</h3>
 
         <p>Laporan Di Proses</p>
       </div>
       <div class="icon">
-        <i class="far fa-clipboard"></i>
+        <i class="fas fa-sign-in-alt"></i>
       </div>
-      <a href="#exampleModalMan" class="small-box-footer" data-toggle="modal" data-target="#exampleModalMan">Tambah Manajemen <i class="fas fa-plus"></i></a>
       <a href="/administrator/data/manajemen" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>  
   <div class="col-lg-3 col-6">
     <!-- small box -->
-    <div class="small-box bg-secondary">
+    <div class="small-box bg-success">
       <div class="inner">
         <h3>{{ $selesai }}</h3>
 
         <p>Laporan Selesai</p>
       </div>
       <div class="icon">
-        <i class="far fa-clipboard"></i>
+        <i class="fas fa-check"></i>
       </div>
-      <a href="#exampleModalDiv" class="small-box-footer" data-toggle="modal" data-target="#exampleModalDiv">Tambah Divisi <i class="fas fa-plus"></i></a>
       <a href="/administrator/data/divisi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div> 

@@ -23,12 +23,22 @@ class TanggapanModel extends Model
         return DB::table('tanggapan')->insert($data);
     }
 
-    public function v_tanggapan()
+    public function v_tanggapan($id)
     {
         return DB::table('tanggapan')
         ->join('pengaduan', 'tanggapan.id_pengaduan', '=', 'pengaduan.id_pengaduan')
         ->select('tanggapan.*','pengaduan.*')
         ->where('tanggapan.status_tanggapan','4')
+        ->where('pengaduan.id_pengaduan',$id)
+        ->get();
+    }
+
+    public function v_tanggapanM()
+    {
+        return DB::table('tanggapan')
+        ->join('pengaduan', 'tanggapan.id_pengaduan', '=', 'pengaduan.id_pengaduan')
+        ->select('tanggapan.*','pengaduan.*')
+        ->where('tanggapan.status_tanggapan','1')
         ->get();
     }
 
@@ -63,6 +73,16 @@ class TanggapanModel extends Model
       ->where('id_pengaduan', $id)
       ->where('status_tanggapan','4')
       ->get();
+   }
+
+   public function tanggapan_u_tolak($id)
+   {
+    return DB::table('tanggapan')
+        ->rightJoin('tktanggapan', 'tanggapan.id_tanggapan', '=', 'tktanggapan.id_tanggapan')
+        ->select('tanggapan.*','tktanggapan.alasan_tolak')
+        ->where('tanggapan.id_pengaduan', $id)
+        ->where('tanggapan.status_tanggapan','3')
+        ->get();
    }
 
 }

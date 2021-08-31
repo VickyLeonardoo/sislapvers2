@@ -128,8 +128,8 @@ class LaporanController extends Controller
             'kd' => Request()->unit,
             'unit' => Request()->unit,
         ];
-    $this->LaporanModel->ubahData($id,$data);
-    return redirect()->route('m_masuk');
+        $this->LaporanModel->ubahData($id,$data);
+        return redirect()->route('m_masuk');
     }
 
     public function v_lap_masuk()
@@ -197,11 +197,6 @@ class LaporanController extends Controller
             ];
             return view('unit.v_lap_selesai',$data);
         }
-    }
-
-    public function selesaikan_laporan($id)
-    {
-
     }
 
     public function tanggapi()
@@ -279,6 +274,14 @@ class LaporanController extends Controller
             'laporan' => $this->TanggapanModel->tanggapanSukses($id),
         ];
         return view('unit.v_tanggapan_s',$data);
+    }
+
+    public function v_tanggapan_tolak($id)
+    {
+        $data = [
+            'laporan' => $this->TanggapanModel->tanggapan_u_tolak($id),
+        ];
+        return view('unit.v_tanggapan_t',$data);
     }
 
 }

@@ -21,17 +21,11 @@
         <div class="form-group">
             <input type="hidden" class="form-control" value="{{Auth::guard('pelapor')->user()->id }}" name="id_pelapor">
             <div class="text-danger">
-                @error('judul')
-                {{ $message }}
-                @enderror
         </div>
           </div>
           <div class="form-group">
             <input type="hidden" class="form-control" value="{{Auth::guard('pelapor')->user()->nama }}" name="nama">
             <div class="text-danger">
-                @error('judul')
-                {{ $message }}
-                @enderror
         </div>
           </div>
         

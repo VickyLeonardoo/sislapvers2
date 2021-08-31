@@ -169,7 +169,7 @@
             <input type="hidden" name="id_tanggapan" value="{{ $data->id_tanggapan }}">
 
             <div class="form-group">
-              <label class="col-form-label" for="inputSuccess">Tanggapan</label>
+              <label class="col-form-label" for="inputSuccess">Tanggapan Dari Unit</label>
               <textarea name="tanggapan" disabled id="" class="form-control" row="7">{{ $data->tanggapan }}</textarea>
             </div>
             

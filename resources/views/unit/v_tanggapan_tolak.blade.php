@@ -168,16 +168,16 @@
             <input type="hidden" name="id_pengaduan" value="{{ $data->id_pengaduan }}">
             <input type="hidden" name="id_tanggapan" value="{{ $data->id_tanggapan }}">
             <div class="form-group">
-              <label class="col-form-label">Tanggapan</label>
+              <label class="col-form-label">Tanggapan Ditolak</label>
               <textarea name="tanggapan_lama" disabled id="" class="form-control" row="7">{{ $data->tanggapan }}</textarea>
             </div>
             <div class="form-group" sty>
-              <label class="col-form-label"> Komentar Manajemen <i class="far fa-bell"></i></label>
+              <label class="col-form-label"> Catatan Dari Manajemen <i class="far fa-bell"></i></label>
               <textarea name="komentar" disabled class="form-control is-invalid" row="7">{{ $data->alasan_tolak }}</textarea>
             </div>
             
             <div class="form-group">
-              <label class="col-form-label">Tanggapi</label>
+              <label class="col-form-label">Revisi Tanggapan</label>
               <textarea name="tanggapan" id="" class="form-control" rows="5"></textarea>
             </div>
         </div>
