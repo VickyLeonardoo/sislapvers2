@@ -65,7 +65,7 @@
           <label>Unit Tujuan:</label>
             <select class="form-control" name="unit">
                 @foreach ($unit as $data)
-                    <option value="{{ $data->kode }}">{{ $data->nama_div }}
+                    <option value="{{ $data->id_divisi }}">{{ $data->nama_div }}
                     </option>
                 @endforeach    
             </select>

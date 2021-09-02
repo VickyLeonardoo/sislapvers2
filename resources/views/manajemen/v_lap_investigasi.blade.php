@@ -147,22 +147,13 @@
               <div class="form-group">
                 <label>Unit</label>
                 <select name="unit" class="form-control" id="">
-                  <option value="{{ $data->kd }}">{{ $data->kd }}</option>
-                  <option disabled>--Pilih--</option>
-              
-                @foreach ($unit as $data)
-                    <option value="{{ $data->kode }}">{{ $data->nama_div }}
-                    </option>
-                @endforeach 
+                  <option value="{{ $data->id_divisi }}">{{ $data->nama_div }}</option>
                 </select>
               </div>
-            
-            
-          
         </div>
       </div>
       <div class="modal-footer">
-        <input type="submit" class="btn btn-primary" value="Simpan">
+        <input type="submit" class="btn btn-primary" value="Selesaikan">
       </form>
       </div>
     </div>

@@ -28,6 +28,7 @@ Route::get('/login', function () {
 Route::get('/login',[UserController::class,'login'])->name('login');
 Route::get('/register',[UserController::class,'register'])->name('register');
 
+Route::post('/tambah/user',[UserController::class,'tambah_user']);
 
 //Proses Login
 Route::post('/proses_login',[AuthController::class,'proses_login']);
@@ -104,7 +105,7 @@ Route::group(['middleware' => ['cek_login:4']],function(){
 Route::group(['middleware' => ['auth:user']],function(){
 Route::group(['middleware' => ['cek_login:99']],function(){
     Route::get('/administrator',[AdministratorController::class,'home'])->name('administrator');
-    Route::get('/administrator/data/admin',[AdministratorController::class,'v_data_admin']);
+    Route::get('/administrator/data/admin',[AdministratorController::class,'v_data_admin'])->name('adminis_admin');
     Route::get('/administrator/data/unit',[AdministratorController::class,'v_data_unit']);
     Route::get('/administrator/data/manajemen',[AdministratorController::class,'v_data_manajemen']);
     Route::get('/administrator/data/divisi',[AdministratorController::class,'v_data_divisi']);
@@ -116,6 +117,9 @@ Route::group(['middleware' => ['cek_login:99']],function(){
     Route::post('/administrator/tambah/unit',[AdministratorController::class,'tambah_unit']);
     Route::post('/administrator/tambah/manajemen',[AdministratorController::class,'tambah_manjemen']);
     Route::post('/administrator/tambah/divisi',[AdministratorController::class,'tambah_divisi']);
+    Route::post('/administrator/update/admin/{id}',[AdministratorController::class,'update_admin']);
+    Route::post('/administrator/update/password/{id}',[AdministratorController::class,'update_password']);
+
 });
 });
     

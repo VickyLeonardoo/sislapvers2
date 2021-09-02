@@ -32,7 +32,7 @@
                             </button>
 
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tanggapiModal{{ $data->id_tanggapan }}">
-                              Verifikasi
+                              Tanggapi
                             </button>
                           </td>
                           
@@ -129,16 +129,6 @@
                 </div>
               </div>
             </div>
-              <!-- textarea -->
-              <div class="form-group">
-                <label>Unit</label>
-                <select name="unit" class="form-control" id="">
-                  <option value="">{{ $data->kd}}</option>
-                </select>
-              </div>
-            
-            
-          
         </div>
       </div>
       <div class="modal-footer">

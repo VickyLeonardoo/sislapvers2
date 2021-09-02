@@ -27,6 +27,11 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_petugas }}">
                               Detail
                             </button>
+
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passwordModal{{ $data->id_petugas }}">
+                              <i class="fas fa-eye"></i>
+                              Ganti Password
+                            </button>
                           </td>
                           
                         </tr>
@@ -47,104 +52,50 @@
     </section>
     
 <!-- Modal -->
-{{-- @foreach ($laporan as $data)
-<div class="modal fade" id="exampleModal{{ $data->id_pengaduan }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@foreach ($admin as $data)
+<div class="modal fade" id="exampleModal{{ $data->id_petugas }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_pengaduan }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_petugas }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="card-body">
-          <form method="POST" action="/laporan/update/{{ $data->id_pengaduan }}">
+          <form method="POST" action="/administrator/update/admin/{{ $data->id_petugas }}">
             @csrf
             <div class="row">
               <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
-                  <label>Nama Pelapor</label>
-                  <input type="text" class="form-control" value="{{ $data->nama }}">
+                  <label>NIK</label>
+                  <input type="text" name="nik" class="form-control" value="{{ $data->nik }}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Judul</label>
-                  <input type="text" class="form-control" value="{{ $data->judul }}">
+                  <label>Nama</label>
+                  <input type="text" name="nama" class="form-control" value="{{ $data->nama }}">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-6">
-                <!-- textarea -->
+                <!-- text input -->
                 <div class="form-group">
-                  <label>Lokasi Kejadian</label>
-                  <input type="text" class="form-control" value="{{ $data->lokasi }}">
+                  <label>Username</label>
+                  <input type="text" name="username" class="form-control" value="{{ $data->username }}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Tgl Kejadian</label>
-                  <input type="text" class="form-control" value="{{ $data->tgl_kejadian }}">
+                  <label>Email</label>
+                  <input type="text" name="email" class="form-control" value="{{ $data->email }}">
                 </div>
               </div>
             </div>
-
-            <!-- input states -->
-            <div class="form-group">
-              <label class="col-form-label" for="inputSuccess"> Isi</label>
-              <textarea name="" id="" class="form-control" row="7">{{ $data->isi }}</textarea>
-            </div>
-            
-            <div class="row">
-              <div class="col-sm-6">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Bukti Foto:</label><br>
-                <img src="{{ url('file_laporan/'.$data->foto) }}" width="400">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Bukti Foto:</label><br>
-                <img src="{{ url('file_laporan/'.$data->foto2) }}" width="400">
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Bukti Foto:</label><br>
-                <img src="{{ url('file_laporan/'.$data->foto3) }}" width="400">
-                </div>
-              </div>
-            </div>
-              <!-- textarea -->
-              <div class="form-group">
-                <label>Tindak Lanjut</label>
-                <select class="form-control" name="investigasi">
-                          <option value="1">Butuh Investigasi</option>
-                          <option value="2">Butuh Balasan Unit</option>
-              </select>
-              </div>
-              <div class="form-group">
-                <label>Unit</label>
-                <select name="unit" class="form-control" id="">
-                  <option value="{{ $data->kd }}">{{ $data->kd }}</option>
-                  <option disabled>--Pilih--</option>
-              
-                @foreach ($unit as $data)
-                    <option value="{{ $data->kode }}">{{ $data->nama_div }}
-                    </option>
-                @endforeach 
-                </select>
-              </div>
-            
-            
-          
         </div>
       </div>
       <div class="modal-footer">
@@ -154,6 +105,41 @@
     </div>
   </div>
 </div>
-@endforeach --}}
+@endforeach
+
+<!-- Modal -->
+@foreach ($admin as $data)
+<div class="modal fade" id="passwordModal{{ $data->id_petugas }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_petugas }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <form method="POST" action="/administrator/update/password/{{ $data->id_petugas }}">
+            @csrf
+                <!-- text input -->
+                <div class="form-group">
+                  <label>New Password</label>
+                  <input type="text" name="password" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Password Confirmation</label>
+                  <input type="text" name="password_confirmation" class="form-control">
+                </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="Simpan">
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
 </div>
 @endsection

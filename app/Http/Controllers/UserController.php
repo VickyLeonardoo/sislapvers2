@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\UnitModel;
 use App\Models\LaporanModel;
 use App\Models\TanggapanModel;
-
+use App\Models\MasyarakatModel;
+use Hash;
 
 class UserController extends Controller
 {
@@ -15,7 +16,7 @@ class UserController extends Controller
         $this->UnitModel = new UnitModel;
         $this->LaporanModel = new LaporanModel;
         $this->TanggapanModel = new TanggapanModel;
-
+        $this->MasyarakatModel = new MasyarakatModel;
     }
 
     public function login()
@@ -68,6 +69,37 @@ class UserController extends Controller
         ];
         $this->LaporanModel->ubahData($id,$data);
         return redirect()->route('user');
+    }
+
+    public function tambah_user()
+    {
+        Request()->validate([
+            'nama' => 'required',
+            'no_hp' => 'required',
+            'email' => 'required|unique:pelapor,email',
+            'username' => 'required|unique:pelapor,username',
+            'password' => 'required|required_with:password_confirmation|same:password_confirmation|min:8'
+        ],[
+            'nama.required' => 'Nama Wajib Diisi',
+            'no_hp.required' => 'Nomor HP Wajib Diisi',
+            'email.required' => 'Email Wajib Diisi',
+            'email.unique' => 'Email Sudah Terdaftar,Silahkan Ganti',
+            'username.required' => 'Username Wajib Diisi',
+            'username.unique' => 'Username sudah ada,silahkan ganti',
+            'password.required' => 'Password Wajib Diisi',
+            'password.same' => 'Password Tidak Sama',
+        ]);
+
+        $data = [
+            'nama' => Request()->nama,
+            'no_hp' => Request()->no_hp,
+            'email' => Request()->email,
+            'username' => Request()->username,
+            'password' => Hash::make(request()->password),
+            'level' => 999,
+        ];
+        $this->MasyarakatModel->tambah($data);
+        return redirect()->route('login');
     }
     
 }

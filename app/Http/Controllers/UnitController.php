@@ -22,12 +22,12 @@ class UnitController extends Controller
     public function home()
     {
         $masuk = DB::table('pengaduan')
-        ->where('id_divisi',Auth::guard('user')->user()->kode)
+        ->where('id_divisi',Auth::guard('user')->user()->id_divisi)
         ->where('status','2')
         ->where('investigasi','2')
         ->count();
         $selesai = DB::table('pengaduan')
-        ->where('id_divisi',Auth::guard('user')->user()->kode)
+        ->where('id_divisi',Auth::guard('user')->user()->id_divisi)
         ->where('status','3')
         ->where('investigasi','2')
         ->count();

@@ -74,8 +74,9 @@ class LaporanController extends Controller
             'lokasi' => Request()->lokasi,
             'isi' => Request()->isi,
             'tgl_kejadian' => Request()->tgl_kejadian,
-            'unit' => Request()->unit,
-            'kd' => Request()->unit,
+            // 'unit' => Request()->unit,
+            // 'kd' => Request()->unit,
+            'id_divisi' => Request()->unit,
             'status' => 1,
             'tgl_laporan' => Carbon::now()->format('Y-m-d'),
             'foto' => $fileName,
@@ -91,8 +92,9 @@ class LaporanController extends Controller
     {
         if (Auth::guard('user')->user()->level == 2) {
             $data = [
-                'unit' => Request()->unit,
-                'kd' => Request()->unit,
+                // 'unit' => Request()->unit,
+                // 'kd' => Request()->unit,
+                'id_divisi' => Request()->unit,
                 'status' => 2,
                 'investigasi' => Request()->investigasi,
             ];
@@ -103,7 +105,6 @@ class LaporanController extends Controller
             $data = [
                 'status' => 3,
                 'investigasi' => 2,
-                'id_divisi' => Request()->id_divisi,
             ];
         $this->LaporanModel->ubahData($id,$data);
         return redirect()->route('u_masuk');
@@ -112,8 +113,7 @@ class LaporanController extends Controller
             $data = [
                 'status' => 2,
                 'investigasi' => 2,
-                'kd' => Request()->unit,
-                'unit' => Request()->unit,
+                'id_divisi' => Request()->unit,
             ];
         $this->LaporanModel->ubahData($id,$data);
         return redirect()->route('m_masuk');

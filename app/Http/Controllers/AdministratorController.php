@@ -29,7 +29,7 @@ class AdministratorController extends Controller
             'div' => $this->UnitModel->v_unit(),
         ];
         $masuk = DB::table('pengaduan')->where('status','1')->count();
-        $selesai = DB::table('pengaduan')->where('status','3')->count();
+        $selesai = DB::table('pengaduan')->where('status','3')->where('respon','1')->count();
         $proses = DB::table('pengaduan')->where('status','2')->count();
         $tolak = DB::table('pengaduan')->where('status','66')->count();
 
@@ -157,6 +157,35 @@ class AdministratorController extends Controller
             'unit' => $this->LaporanModel->v_unit(),
         ];
         return view('administrator.v_laporan_ditolak',$data);
+    }
+
+    public function update_admin($id)
+    {
+        $data = [
+            'nik' => Request()->nik,
+            'nama' => Request()->nama,
+            'username' => Request()->username,
+            'email' => Request()->email,
+        ];
+        $this->AdministratorModel->update_data($id,$data);
+        return redirect()->route('adminis_admin');
+    }
+
+    public function update_password($id)
+    {
+        Request()->validate([
+            'password' => 'required_with:password_confirmation|same:password_confirmation',
+        ],[
+            'password.required' =>  'Wajib Diisi',
+            'password.min' => 'Minimal 8 Karakter',
+            'password.same' => 'Password Tidak Sama',
+        ]);
+
+        $data = [
+            'password' => Hash::make(request()->password),
+        ];
+        $this->AdministratorModel->ubah_password($id,$data);
+        return redirect()->route('adminis_admin');
     }
     
 }

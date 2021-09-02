@@ -174,7 +174,7 @@
             </div>
             
             <div class="form-group">
-              <label class="col-form-label" for="inputSuccess">Komentar</label>
+              <label class="col-form-label" for="inputSuccess">Komentar dari Manajemen</label>
               <textarea name="komentar" id="" class="form-control" rows="5"></textarea>
             </div>
         </div>

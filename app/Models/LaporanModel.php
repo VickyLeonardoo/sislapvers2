@@ -13,17 +13,21 @@ class LaporanModel extends Model
    public function v_lap_masuk()
     {
         if (Auth::guard('user')->user()->level == 2) {
-            return DB::table('pengaduan')->where('status', '1')->get();
+            return DB::table('pengaduan')
+            ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+            ->select('pengaduan.*','unit.*')
+            ->where('pengaduan.status', '1')->get();
         }elseif (Auth::guard('user')->user()->level == 4) {
             return DB::table('pengaduan')
             ->where('status','2')
             ->where('investigasi','2')
-            ->where('id_divisi', Auth::guard('user')->user()->kode)
+            ->where('id_divisi', Auth::guard('user')->user()->id_divisi)
             ->get();
         }elseif(Auth::guard('user')->user()->level == 3){
             return DB::table('pengaduan')
-            ->where('status','2')
-            ->where('investigasi','3')
+            ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+            ->where('pengaduan.status','2')
+            ->where('pengaduan.investigasi','3')
             ->get();
         }elseif(Auth::guard('user')->user()->level == 99){
             return DB::table('pengaduan')
@@ -40,8 +44,9 @@ class LaporanModel extends Model
         }
         elseif (Auth::guard('user')->user()->level == 3){
             return DB::table('pengaduan')
-            ->where('status','2')
-            ->where('investigasi','1')
+            ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+            ->where('pengaduan.status','2')
+            ->where('pengaduan.investigasi','1')
             ->get();
         }
         elseif (Auth::guard('user')->user()->level == 4){
@@ -72,12 +77,13 @@ class LaporanModel extends Model
             return DB::table('pengaduan')
             ->where('status', '3')
             ->where('investigasi','2')
-            ->where('id_divisi', Auth::guard('user')->user()->kode)
+            ->where('id_divisi', Auth::guard('user')->user()->id_divisi)
             ->get();
         }
         elseif(Auth::guard('user')->user()->level == 99){
             return DB::table('pengaduan')
-            ->where('status', '4')
+            ->where('status', '3')
+            ->where('respon','1')
             ->get();
         }
     }

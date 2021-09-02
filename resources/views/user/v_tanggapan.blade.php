@@ -11,7 +11,7 @@
       <?php $i=1  ?>
         @foreach ($tanggapan as $data)
         <div class="form-group">
-            <label>Tanggapan {{ $i++ }}</label>
+            <label>Uraian Tanggapan {{ $i++ }}</label>
             <textarea rows="4" class="form-control" disabled>{{ $data->tanggapan }}</textarea>
         </div>
         @endforeach

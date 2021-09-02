@@ -21,7 +21,13 @@
                     <?php $i=1?>
                     @foreach ($laporan as $data)
                         <tr>
+                          @if ($data->respon == 2)
+                          <td bgcolor="tomato">{{ $data->id_pengaduan }}</td>
+                          @elseif($data->respon == 1)
+                          <td bgcolor="MediumSeaGreen">{{ $data->id_pengaduan }}</td>
+                          @else 
                           <td>{{ $data->id_pengaduan }}</td>
+                          @endif
                           <td>{{ $data->nama }}</td>
                           <td>{{ $data->judul }}</td>
                           <td>{{ $data->isi }}</td>
@@ -126,11 +132,6 @@
             <div class="form-group">
               <label class="col-form-label" for="inputSuccess"> Isi</label>
               <textarea name="" id="" class="form-control" row="7">{{ $data->isi }}</textarea>
-            </div>
-            <div class="form-group">
-              <label class="col-form-label">Unit</label>
-              <input type="text" class="form-control" value="{{ $data->kd}}">
-
             </div>
         </div>
       </div>

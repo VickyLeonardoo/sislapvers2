@@ -49,4 +49,14 @@ class AdministratorModel extends Model
     {
         DB::table('unit')->insert($data);
     }
+
+    public function update_data($id,$data)
+    {
+        DB::table('users')->where('id_petugas',$id)->update($data);
+    }
+
+    public function ubah_password($id,$data)
+    {
+        DB::table('users')->where('id_petugas',$id)->update($data);
+    }
 }

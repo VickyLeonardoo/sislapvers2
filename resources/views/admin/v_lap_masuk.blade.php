@@ -140,11 +140,10 @@
               <div class="form-group">
                 <label>Unit</label>
                 <select name="unit" class="form-control" id="">
-                  <option value="{{ $data->kd }}">{{ $data->kd }}</option>
+                  <option value="{{ $data->id_divisi }}">{{ $data->nama_div }}</option>
                   <option disabled>--Pilih--</option>
-              
                 @foreach ($unit as $data)
-                    <option value="{{ $data->kode }}">{{ $data->nama_div }}
+                    <option value="{{ $data->id_divisi }}">{{ $data->nama_div }}
                     </option>
                 @endforeach 
                 </select>
