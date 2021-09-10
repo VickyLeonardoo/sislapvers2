@@ -82,7 +82,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE App -->
 <script src="{{ asset('assets') }}/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ asset('assets') }}/dist/js/demo.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('assets') }}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ asset('assets') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -96,7 +95,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('assets') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="{{ asset('assets') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{ asset('assets') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<script src="{{ asset('assets') }}/dist/js/demo.js"></script>
 <script>
   $(function () {
     $("#example1").DataTable({

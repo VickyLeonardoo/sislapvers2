@@ -208,6 +208,9 @@ class LaporanController extends Controller
                 'tgl_tanggapan'=> Carbon::now()->format('Y-m-d'),
                 'status_tanggapan' => 1,
             ];
+            $peng = [
+                'status_tanggapan' => 1,
+            ];
             $this->TanggapanModel->tanggapi($data);
             return redirect()->route('u_masuk');
         }

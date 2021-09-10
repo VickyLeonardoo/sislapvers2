@@ -1,4 +1,5 @@
 @extends('administrator.template.header')
+@section('title','Laporan Diproses')
 @section('content')
 <div class="col-12">
     <div class="card">

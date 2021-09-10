@@ -11,7 +11,7 @@
       <div class="icon">
         <i class="ion ion-clipboard"></i>
       </div>
-      <a href="/laporan/masuk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/unit/laporan/masuk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -27,7 +27,7 @@
       <div class="icon">
         <i class="ion ion-clipboard"></i>
       </div>
-      <a href="/laporan/selesai" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/unit/laporan/selesai" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>  
   

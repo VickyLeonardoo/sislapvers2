@@ -128,7 +128,7 @@
             <!-- input states -->
             <div class="form-group">
               <label class="col-form-label" for="inputSuccess"> Isi</label>
-              <textarea name="" id="" class="form-control" row="7">{{ $data->isi }}</textarea>
+              <textarea class="form-control" row="7">{{ $data->isi }}</textarea>
             </div>
             <div class="form-group">
               <label class="col-form-label">Unit</label>

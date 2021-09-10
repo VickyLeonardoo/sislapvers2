@@ -10,7 +10,7 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
-            <th>Tanggapan Ke-</th>
+            <th>NO</th>
             <th>Tanggapan</th>
           </tr>
           </thead>
