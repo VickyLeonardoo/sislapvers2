@@ -119,6 +119,34 @@
       <a href="/administrator/data/divisi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div> 
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3>{{ $respon_tk }}</h3>
+
+        <p>Laporan Selesai</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-times"></i>
+      </div>
+      <a href="/administrator/data/divisi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div> 
+  <div class="col-lg-3 col-6">
+    <!-- small box -->
+    <div class="small-box bg-success">
+      <div class="inner">
+        <h3>{{ $total }}</h3>
+
+        <p>Laporan Total</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-clipboard"></i>
+      </div>
+      <a href="/administrator/data/divisi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+  </div> 
   
 {{-- Modal Admin --}}
 <div class="modal fade" id="exampleModalAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

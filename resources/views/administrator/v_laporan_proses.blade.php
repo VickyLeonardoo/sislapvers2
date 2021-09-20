@@ -13,9 +13,10 @@
           <tr>
             <th>No Pengaduan</th>
             <th>Nama Pelapor</th>
+            <th>Tgl Laporan</th>
             <th>Judul</th>
             <th>Isi</th>
-            <th>Aksi</th>
+            <td>Status</td>
           </tr>
           </thead>
           <tbody>
@@ -24,19 +25,15 @@
                 <tr>
                   <td>{{ $data->id_pengaduan }}</td>
                   <td>{{ $data->nama }}</td>
+                  <td>{{ date('d-M-y', strtotime($data->tgl_laporan)) }}</td>
                   <td>{{ $data->judul }}</td>
                   <td>{{ $data->isi }}</td>
-                  <td>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_pengaduan }}">
-                      Detail
-                    </button>
-
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#tolakModal{{ $data->id_pengaduan }}">
-                      Tolak
-                    </button>
+                    @if ($data->investigasi == 1)
+                        <td>Manajemen</td>
+                    @else
+                        <td>Unit {{ $data->nama_div }}
+                    @endif
                   </td>
-                  
                 </tr>
             @endforeach
             

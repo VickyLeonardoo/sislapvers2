@@ -80,15 +80,40 @@
                   <p>Laporan Ditolak</p>
                 </a>
               </li>
-            </ul>
+             </ul>
+            
           </li>
           <li class="nav-item">
-            <a href="/logout" class="nav-link">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>Logout</p>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-print"></i>
+              <p>
+                Cetak
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right"></span>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/cetak/laporan/" class="nav-link {{ request()->is('/cetak/laporan') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cetak Total Laporan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/cetak/laporan/selesai/" class="nav-link {{ request()->is('cetak/laporan/selesai') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cetak Laporan Selesai</p>
+                </a>
+              </li>
+              
           </li>
         </ul>
+        <li class="nav-item">
+          <a href="/logout" class="nav-link">
+            <i class="nav-icon fas fa-sign-out-alt"></i>
+            <p>Logout</p>
+          </a>
+        </li>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

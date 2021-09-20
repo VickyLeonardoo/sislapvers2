@@ -8,6 +8,7 @@ use Hash;
 use App\Models\AdministratorModel;
 use App\Models\UnitModel;
 use App\Models\LaporanModel;
+use App\Models\TanggapanModel;
 
 
 class AdministratorController extends Controller
@@ -17,6 +18,7 @@ class AdministratorController extends Controller
         $this->AdministratorModel = new AdministratorModel;
         $this->UnitModel = new UnitModel;
         $this->LaporanModel = new LaporanModel;
+        $this->TanggapanModel = new TanggapanModel;
     }
     public function home()
     {
@@ -30,10 +32,14 @@ class AdministratorController extends Controller
         ];
         $masuk = DB::table('pengaduan')->where('status','1')->count();
         $selesai = DB::table('pengaduan')->where('status','3')->where('respon','1')->count();
+        $respon_tk = DB::table('pengaduan')->where('status','3')->where('respon','2')->count();
         $proses = DB::table('pengaduan')->where('status','2')->count();
         $tolak = DB::table('pengaduan')->where('status','66')->count();
+        $total = DB::table('pengaduan')
+        ->wherein('status',[1,3,2,66])
+        ->count();
 
-        return view('administrator.home',$data,compact('admin','unit','manajemen','divisi','masuk','proses','selesai','tolak'));
+        return view('administrator.home',$data,compact('admin','unit','manajemen','divisi','masuk','proses','selesai','respon_tk','tolak','total'));
     }
     
     public function v_data_admin()
@@ -186,6 +192,43 @@ class AdministratorController extends Controller
         ];
         $this->AdministratorModel->ubah_password($id,$data);
         return redirect()->route('adminis_admin');
+    }
+
+    public function v_tanggapan($id)
+    {
+        $data = [
+            'tanggapan' => $this->TanggapanModel->v_tanggapan($id),
+        ];
+        return view('administrator.v_tanggapan',$data);
+    }
+
+    public function cetak()
+    {
+        return view('administrator.cetak');
+    }
+
+    public function cetak_selesai()
+    {
+        return view('administrator.cetak_selesai');
+    }
+
+    public function cetakPerTanggal($tglawal, $tglakhir)
+    {
+        //  dd("Tanggal Awal :" .$tglawal, "Tanggal Akhir:".$tglakhir);
+        $cetak = DB::table('pengaduan')->whereBetween('tgl_laporan',[$tglawal, $tglakhir])->get();
+        return view('administrator.cetak_pertanggal', compact('cetak'));
+        
+    }
+
+    public function cetakPerTanggalSelesai($tglawal, $tglakhir)
+    {
+        //  dd("Tanggal Awal :" .$tglawal, "Tanggal Akhir:".$tglakhir);
+        $cetak = DB::table('pengaduan')
+        ->where('status',3)
+        ->where('respon',1)
+        ->whereBetween('tgl_laporan',[$tglawal, $tglakhir])->get();
+        return view('administrator.cetak_pertanggal', compact('cetak'));
+        
     }
     
 }

@@ -12,8 +12,13 @@
           <tr>
             <th>No Pengaduan</th>
             <th>Judul</th>
+            <th>Isi</th>
+            <th>Unit</th>
+            <th>Foto 1</th>
+            <th>Foto 2</th>
+            <th>Foto 3</th>
             <th>Status</th>
-            <th>Aksi</th>
+            <th></th>
           </tr>
           </thead>
           <tbody>
@@ -22,6 +27,18 @@
                 <tr>
                 <td>{{ $data->id_pengaduan }}</td>
                 <td>{{ $data->judul }}</td>
+                <td>{{ $data->isi }}</td>
+                <td>{{ $data->nama_div }}</td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#foto1Modal{{ $data->id_pengaduan }}">
+                  Lihat
+                </button></td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#foto2Modal{{ $data->id_pengaduan }}">
+                  Lihat
+                </button></td>
+                <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#foto3Modal{{ $data->id_pengaduan }}">
+                  Lihat
+                </button></td>
+                
                 @if ($data->status == 66)
                 <td>Ditolak</td>
                 @elseif($data->status == 1)
@@ -34,27 +51,20 @@
                   <td>
 
                     @if ($data->status == 1)
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_pengaduan }}">
-                        Detail
-                      </button>
+                    <a href="/tanggapan/{{ $data->id_pengaduan }}" class="btn btn-info">
+                      <span class="text">Tanggapan Dari Poltek</span>
+                  </a> 
                     @elseif($data->status == 2)
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_pengaduan }}">
-                        Detail
-                      </button>
-
                       <a href="/tanggapan/{{ $data->id_pengaduan }}" class="btn btn-info">
-                        <span class="text">Tanggapan</span>
+                        <span class="text">Tanggapan Dari Poltek</span>
                     </a> 
                     @elseif($data->status == 3)
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_pengaduan }}">
-                        Detail
-                      </button>
                       <a href="/tanggapan/{{ $data->id_pengaduan }}" class="btn btn-info">
-                        <span class="text">Tanggapan</span>
+                        <span class="text">Tanggapan Dari Poltek</span>
                     </a> 
                     @else 
                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alasanModal{{ $data->id_pengaduan }}">
-                        Alasan
+                        Tanggapan Dari Poltek
                       </button>
                     @endif
                     
@@ -130,11 +140,7 @@
               <label class="col-form-label" for="inputSuccess"> Isi</label>
               <textarea class="form-control" row="7">{{ $data->isi }}</textarea>
             </div>
-            <div class="form-group">
-              <label class="col-form-label">Unit</label>
-              <input type="text" class="form-control" value="{{ $data->kd}}">
-            </div>
-            <div class="row">
+            {{-- <div class="row">
               <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
@@ -157,7 +163,7 @@
                 <img src="{{ url('file_laporan/'.$data->foto) }}" width="400">
                 </div>
               </div>
-            </div>
+            </div> --}}
         </div>
       </div>
       <div class="modal-footer">
@@ -200,4 +206,31 @@
 </div>
 @endforeach
 
+@foreach ($laporan as $data)
+<div class="modal fade" id="foto1Modal{{ $data->id_pengaduan }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+              <img src="{{ url('file_laporan/'.$data->foto) }}" >
+    </div>
+  </div>
+</div>
+@endforeach
+@foreach ($laporan as $data)
+<div class="modal fade" id="foto2Modal{{ $data->id_pengaduan }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+              <img src="{{ url('file_laporan/'.$data->foto2) }}">
+    </div>
+  </div>
+</div>
+@endforeach
+@foreach ($laporan as $data)
+<div class="modal fade" id="foto3Modal{{ $data->id_pengaduan }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+              <img src="{{ url('file_laporan/'.$data->foto3) }}">
+    </div>
+  </div>
+</div>
+@endforeach
 @endsection

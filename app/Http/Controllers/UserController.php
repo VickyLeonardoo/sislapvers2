@@ -41,6 +41,7 @@ class UserController extends Controller
     {
         $data = [
             'laporan' => $this->LaporanModel->v_laporan(),
+            'unit' => $this->LaporanModel->v_unit(),
         ];
         return view('user.v_laporan',$data);
     }
@@ -57,6 +58,7 @@ class UserController extends Controller
     {
         $data = [
             'respon' => 1,
+            'status' => 3,
         ];
         $this->LaporanModel->ubahData($id,$data);
         return redirect()->route('v_laporan');

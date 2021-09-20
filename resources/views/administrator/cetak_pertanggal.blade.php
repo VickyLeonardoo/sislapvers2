@@ -1,4 +1,5 @@
 @extends('administrator.template.header')
+@section('title','Laporan Masuk')
 @section('content')
 <div class="col-12">
     <div class="card">
@@ -10,37 +11,24 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
+            <th>No</th>
             <th>No Pengaduan</th>
             <th>Nama Pelapor</th>
             <th>Tgl Laporan</th>
             <th>Judul</th>
             <th>Isi</th>
-            <th>Status</th>
-            <th></th>
           </tr>
           </thead>
           <tbody>
             <?php $i=1?>
-            @foreach ($laporan as $data)
+            @foreach ($cetak as $data)
                 <tr>
+                    <td>{{ $i++ }}</td>
                   <td>{{ $data->id_pengaduan }}</td>
                   <td>{{ $data->nama }}</td>
                   <td>{{ date('d-M-y', strtotime($data->tgl_laporan)) }}</td>
                   <td>{{ $data->judul }}</td>
                   <td>{{ $data->isi }}</td>
-                    @if ($data->investigasi == 1)
-                        <td>Manajemen</td>
-                    @else
-                        <td>Unit {{ $data->nama_div }}
-                    @endif
-                  </td>
-                  <td>
-                    <!-- Button trigger modal -->
-                    <a href="/tanggapan/petugas/{{ $data->id_pengaduan }}" class="btn btn-info">
-                      <span class="text">Tanggapan Dari Poltek</span>
-                  </a> 
-                  </td>
-                  
                 </tr>
             @endforeach
             

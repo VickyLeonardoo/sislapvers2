@@ -21,6 +21,7 @@ class LaporanController extends Controller
 
     public function simpan_laporan()
     {
+        
         Request()->validate([
             'nama' => 'required',
             'judul' => 'required',

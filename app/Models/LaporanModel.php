@@ -57,7 +57,8 @@ class LaporanModel extends Model
         }
         elseif (Auth::guard('user')->user()->level == 99){
             return DB::table('pengaduan')
-            ->where('status','2')
+            ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+            ->where('pengaduan.status','2')
             ->get();
         }
        
@@ -82,8 +83,9 @@ class LaporanModel extends Model
         }
         elseif(Auth::guard('user')->user()->level == 99){
             return DB::table('pengaduan')
-            ->where('status', '3')
-            ->where('respon','1')
+            ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+            ->where('pengaduan.status', '3')
+            ->where('pengaduan.respon','1')
             ->get();
         }
     }
@@ -95,7 +97,8 @@ class LaporanModel extends Model
     public function v_laporan()
     {
         return DB::table('pengaduan')
-        ->where('id_pelapor', Auth::guard('pelapor')->user()->id)
+        ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+        ->where('pengaduan.id_pelapor', Auth::guard('pelapor')->user()->id)
         ->get();
     }
 

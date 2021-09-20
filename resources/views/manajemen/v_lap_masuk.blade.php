@@ -134,7 +134,7 @@
                   <option value="{{ $data->id_divisi }}">{{ $data->nama_div }}</option>
                   <option disabled>--Pilih--</option>
                 @foreach ($unit as $item)
-                    <option value="{{ $item->kode }}">{{ $item->nama_div }}
+                    <option value="{{ $item->id_divisi }}">{{ $item->nama_div }}
                     </option>
                 @endforeach 
                 </select>

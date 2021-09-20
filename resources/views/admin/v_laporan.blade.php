@@ -1,13 +1,5 @@
-@extends('user.template.header')
+@extends('admin.template.header')
 @section('content')
-@if (session('pesan'))
-    <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h4><i class="icon fa fa-check"></i>Sukses</h4>
-        {{ session('pesan') }}
-      </div>
-    @endif
-    
 <div class="col-md-12">
     <!-- general form elements -->
     <div class="card card-info">
@@ -16,15 +8,15 @@
       </div>
       <!-- /.card-header -->
       <!-- form start -->
-      <form action="/simpan/laporan" method="POST" enctype="multipart/form-data">
+      <form action="/admin/simpan/laporan" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <input type="hidden" class="form-control" value="{{Auth::guard('pelapor')->user()->id }}" name="id_pelapor">
+            <input type="hidden" class="form-control" value="{{Auth::guard('user')->user()->id_petugas }}" name="id_pelapor">
             <div class="text-danger">
         </div>
           </div>
           <div class="form-group">
-            <input type="hidden" class="form-control" value="{{Auth::guard('pelapor')->user()->nama }}" name="nama">
+            <input type="hidden" class="form-control" value="{{Auth::guard('user')->user()->nama }}" name="nama">
             <div class="text-danger">
         </div>
           </div>
@@ -106,5 +98,4 @@
       </form>
     </div>
 </div>
-   
 @endsection

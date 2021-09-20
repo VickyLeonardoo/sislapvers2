@@ -180,8 +180,8 @@
         </div>
       </div>
       <div class="modal-footer">
-      <input type="submit" class="btn btn-warning" value="Kembalikan Ke Unit" formaction="/manajemen/verifikasi/tanggapan/kembalikan/{{ $data->id_tanggapan }}">
-      <input type="submit" class="btn btn-success" value="Kirim" formaction="/manajemen/verifikasi/tanggapan/{{ $data->id_tanggapan }}">
+      <input type="submit" class="btn btn-info" value="Kembalikan Ke Unit" formaction="/manajemen/verifikasi/tanggapan/kembalikan/{{ $data->id_tanggapan }}">
+      <input type="submit" class="btn btn-info" value="Kirim Ke Pelapor" formaction="/manajemen/verifikasi/tanggapan/{{ $data->id_tanggapan }}">
 
       </div>
     </form>

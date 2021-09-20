@@ -41,6 +41,13 @@
             </ul>
           </li>
           <li class="nav-item">
+            <a href="admin/tulis-laporan" target="_blank" class="nav-link">
+              <i class="nav-icon fas fa-clipboard"></i>
+              <p>Tulis Laporan</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="/logout" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>Logout</p>
