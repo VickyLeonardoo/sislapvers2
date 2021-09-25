@@ -51,20 +51,20 @@
                   <td>
 
                     @if ($data->status == 1)
-                    <a href="/tanggapan/{{ $data->id_pengaduan }}" class="btn btn-info">
-                      <span class="text">Tanggapan Dari Poltek</span>
+                    <a href="/tanggapan-v/{{ $data->id_pengaduan }}" class="btn btn-info">
+                      <span class="text">Tanggapan Dari Polibatam</span>
                   </a> 
                     @elseif($data->status == 2)
                       <a href="/tanggapan/{{ $data->id_pengaduan }}" class="btn btn-info">
-                        <span class="text">Tanggapan Dari Poltek</span>
+                        <span class="text">Tanggapan Dari Polibatam</span>
                     </a> 
                     @elseif($data->status == 3)
                       <a href="/tanggapan/{{ $data->id_pengaduan }}" class="btn btn-info">
-                        <span class="text">Tanggapan Dari Poltek</span>
+                        <span class="text">Tanggapan Dari Polibatam</span>
                     </a> 
                     @else 
                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#alasanModal{{ $data->id_pengaduan }}">
-                        Tanggapan Dari Poltek
+                        Tanggapan Dari Polibatam
                       </button>
                     @endif
                     

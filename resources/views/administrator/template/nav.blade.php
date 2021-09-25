@@ -80,6 +80,12 @@
                   <p>Laporan Ditolak</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/administrator/laporan/total" class="nav-link {{ request()->is('administrator/laporan/masuk') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Total</p>
+                </a>
+              </li>
              </ul>
             
           </li>
@@ -105,9 +111,15 @@
                   <p>Cetak Laporan Selesai</p>
                 </a>
               </li>
-              
+               
           </li>
         </ul>
+        <li class="nav-item">
+          <a href="/laporan/hapus-laporan" class="nav-link">
+            <i class="nav-icon fas fa-trash"></i>
+            <p>Hapus Laporan</p>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="/logout" class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>

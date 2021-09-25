@@ -101,7 +101,7 @@
             </div>
             <div class="form-group">
               <label class="col-form-label">Unit</label>
-              <input type="text" class="form-control" value="{{ $data->kd}}">
+              <input type="text" class="form-control" value="{{ $data->nama_div}}">
 
             </div>
           </form>

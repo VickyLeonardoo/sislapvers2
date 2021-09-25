@@ -82,6 +82,7 @@
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::guard('user')->user()->nama }}</a>
+          <p class="text-light">{{ Auth::guard('user')->user()->nik }}</p>
         </div>
       </div>
 

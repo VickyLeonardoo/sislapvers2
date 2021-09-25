@@ -31,7 +31,7 @@
           @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name" name="nama" value="{{ old('nama') }}">
+          <input type="text" class="form-control" autocomplete="off" placeholder="Full name" name="nama" value="{{ old('nama') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -44,7 +44,7 @@
           @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
+          <input type="email" class="form-control" autocomplete="off" placeholder="Email" name="email" value="{{ old('email') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -57,7 +57,7 @@
           @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="No HP" name="no_hp" value="{{ old('no_hp') }}">
+          <input type="text" class="form-control" autocomplete="off" placeholder="No HP" name="no_hp" value="{{ old('no_hp') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-phone"></span>
@@ -70,7 +70,7 @@
           @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}">
+          <input type="text" class="form-control" autocomplete="off" placeholder="Username" name="username" value="{{ old('username') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>

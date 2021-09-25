@@ -41,7 +41,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="admin/tulis-laporan" target="_blank" class="nav-link">
+            <a href="/admin/tulis-laporan" target="_blank" class="nav-link {{ request()->is('admin/tulis-laporan') ? 'active' : '' }} ">
               <i class="nav-icon fas fa-clipboard"></i>
               <p>Tulis Laporan</p>
             </a>

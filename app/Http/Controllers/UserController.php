@@ -101,7 +101,11 @@ class UserController extends Controller
             'level' => 999,
         ];
         $this->MasyarakatModel->tambah($data);
-        return redirect()->route('login');
+        return redirect()->route('login')->with('berhasil','Kamu Berhasil Mendaftar,Silahkan Login!');
     }
-    
+
+    public function v_tanggapan1()
+    {
+        return view('user.v_tanggapan_v');
+    }
 }

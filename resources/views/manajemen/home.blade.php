@@ -11,7 +11,7 @@
       <div class="icon">
         <i class="ion ion-clipboard"></i>
       </div>
-      <a href="/laporan/masuk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/manajemen/laporan/masuk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -26,7 +26,7 @@
       <div class="icon">
         <i class="ion ion-clipboard"></i>
       </div>
-      <a href="/laporan/selesai" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/manajemen/laporan/investigasi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>  
 
@@ -41,7 +41,7 @@
       <div class="icon">
         <i class="ion ion-clipboard"></i>
       </div>
-      <a href="/laporan/selesai" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/manajemen/laporan/selesai" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>  
 
@@ -56,7 +56,7 @@
       <div class="icon">
         <i class="ion ion-clipboard"></i>
       </div>
-      <a href="/laporan/selesai" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/manajemen/tanggapan/masuk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>  
 </div>

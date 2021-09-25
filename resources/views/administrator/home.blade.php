@@ -73,7 +73,7 @@
       <div class="icon">
         <i class="fas fa-times"></i>
       </div>
-      <a href="/administrator/data/admin" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/administrator/laporan/ditolak" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <!-- ./col -->
@@ -88,7 +88,7 @@
       <div class="icon">
         <i class="fas fa-sign-in-alt"></i>
       </div>
-      <a href="/administrator/data/unit" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/administrator/laporan/masuk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-3 col-6">
@@ -102,7 +102,7 @@
       <div class="icon">
         <i class="fas fa-sign-in-alt"></i>
       </div>
-      <a href="/administrator/data/manajemen" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/administrator/laporan/proses" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>  
   <div class="col-lg-3 col-6">
@@ -116,7 +116,7 @@
       <div class="icon">
         <i class="fas fa-check"></i>
       </div>
-      <a href="/administrator/data/divisi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="/administrator/laporan/selesai" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div> 
   <div class="col-lg-3 col-6">

@@ -18,8 +18,15 @@
             <label for="exampleInputEmail1">Taggal Akhir</label>
             <input type="date" class="form-control" id="tglakhir" name="tglakhir" required>
           </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Respon</label>
+            <select name="" class="form-control" id="respon">
+              <option value="1">Puas</option>
+              <option value="2">Kurang Puas</option>
+            </select>
+          </div>
                 
-          <a href="#" onclick="this.href='/cetak/laporan/selesai/tgl/'+document.getElementById('tglawal').value + '/' + document.getElementById('tglakhir').value " target="_blank" class="btn btn-info">Cetak</a>
+          <a href="#" onclick="this.href='/cetak/laporan/selesai/tgl/'+document.getElementById('tglawal').value + '/' + document.getElementById('tglakhir').value + '/' + document.getElementById('respon').value " target="_blank" class="btn btn-info">Cetak</a>
     </div>
 </div>  
 @endsection

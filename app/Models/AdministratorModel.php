@@ -59,4 +59,22 @@ class AdministratorModel extends Model
     {
         DB::table('users')->where('id_petugas',$id)->update($data);
     }
+
+    public function v_laporan_total()
+    {
+        return DB::table('pengaduan')
+        ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
+        ->get();
+    }
+
+    public function hapus_laporan($id)
+    {
+        DB::table('pengaduan')->where('id_pengaduan',$id)->delete();
+    }
+
+    public function detail_hapus($id)
+    {
+        return DB::table('pengaduan')->where('id_pengaduan', $id)->first();
+    }
+
 }

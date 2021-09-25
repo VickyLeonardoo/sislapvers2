@@ -23,7 +23,6 @@ class LaporanController extends Controller
     {
         
         Request()->validate([
-            'nama' => 'required',
             'judul' => 'required',
             'lokasi' => 'required',
             'isi' => 'required',
@@ -70,7 +69,7 @@ class LaporanController extends Controller
 
         $data = [
             'id_pelapor' => Request()->id_pelapor,
-            'nama' => Request()->nama,
+            // 'nama' => Request()->nama,
             'judul' => Request()->judul,
             'lokasi' => Request()->lokasi,
             'isi' => Request()->isi,
@@ -85,7 +84,8 @@ class LaporanController extends Controller
             'foto3' => $fileNamed,
         ];
         $this->LaporanModel->tambahData($data);
-        return redirect()->route('user')->with('pesan','Data Berhasil Di Tambahkan !!');
+        return redirect()->route('user')->with('pesan','Data Berhasil Di Tambahkan !! ');
+        
     
     }
 
@@ -126,8 +126,6 @@ class LaporanController extends Controller
         $data = [
             'status' => 2,
             'investigasi' => 1,
-            'kd' => Request()->unit,
-            'unit' => Request()->unit,
         ];
         $this->LaporanModel->ubahData($id,$data);
         return redirect()->route('m_masuk');

@@ -117,7 +117,7 @@
             </div>
             <div class="form-group">
               <label class="col-form-label">Unit</label>
-              <input type="text" class="form-control" value="{{ $data->kd}}">
+              <input type="text" class="form-control" value="{{ $data->nama_div}}">
             </div>
             <div class="row">
               <div class="col-sm-6">
@@ -205,7 +205,7 @@
             </div>
             <div class="form-group">
               <label class="col-form-label">Unit</label>
-              <input type="text" class="form-control" value="{{ $data->kd}}">
+              <input type="text" class="form-control" value="{{ $data->nama_div}}">
             </div>
             
           </form>

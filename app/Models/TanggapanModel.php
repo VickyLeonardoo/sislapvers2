@@ -37,7 +37,8 @@ class TanggapanModel extends Model
     {
         return DB::table('tanggapan')
         ->join('pengaduan', 'tanggapan.id_pengaduan', '=', 'pengaduan.id_pengaduan')
-        ->select('tanggapan.*','pengaduan.*')
+        ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+        ->select('tanggapan.*','pengaduan.*','unit.*')
         ->where('tanggapan.status_tanggapan','1')
         ->get();
     }

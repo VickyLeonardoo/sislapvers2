@@ -69,13 +69,12 @@
           <form method="POST" action="/laporan/update/{{ $data->id_pengaduan }}">
             @csrf
             <div class="row">
-              <div class="col-sm-6">
                 <!-- text input -->
-                <div class="form-group">
-                  <label>Nama Pelapor</label>
-                  <input type="text" class="form-control" value="{{ $data->nama }}">
-                </div>
-              </div>
+                {{-- <div class="form-group"> --}}
+                  {{-- <label>Nama Pelapor</label> --}}
+                  {{-- <input type="text" class="form-control" value="{{ $data->nama }}"> --}}
+                {{-- </div> --}}
+              {{-- </div> --}}
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Judul</label>
@@ -133,7 +132,7 @@
               <div class="form-group">
                 <label>Unit</label>
                 <select name="unit" class="form-control" id="">
-                  <option value="">{{ $data->kd}}</option>
+                  <option value="">{{ $data->nama_div}}</option>
                 </select>
               </div>
             

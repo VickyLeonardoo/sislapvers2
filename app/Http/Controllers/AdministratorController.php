@@ -215,20 +215,44 @@ class AdministratorController extends Controller
     public function cetakPerTanggal($tglawal, $tglakhir)
     {
         //  dd("Tanggal Awal :" .$tglawal, "Tanggal Akhir:".$tglakhir);
-        $cetak = DB::table('pengaduan')->whereBetween('tgl_laporan',[$tglawal, $tglakhir])->get();
+        $cetak = DB::table('pengaduan')
+        ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
+        ->whereBetween('tgl_laporan',[$tglawal, $tglakhir])
+        ->get();
         return view('administrator.cetak_pertanggal', compact('cetak'));
         
     }
 
-    public function cetakPerTanggalSelesai($tglawal, $tglakhir)
+    public function cetakPerTanggalSelesai($tglawal, $tglakhir, $respon)
     {
         //  dd("Tanggal Awal :" .$tglawal, "Tanggal Akhir:".$tglakhir);
         $cetak = DB::table('pengaduan')
+        ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
         ->where('status',3)
-        ->where('respon',1)
+        ->where('respon',[$respon])
         ->whereBetween('tgl_laporan',[$tglawal, $tglakhir])->get();
         return view('administrator.cetak_pertanggal', compact('cetak'));
         
+    }
+
+    public function hapus_laporan()
+    {
+        $data = [
+            'laporan' => $this->AdministratorModel->v_laporan_total()
+        ];
+        return view('administrator.v_hapus',$data);
+    }
+
+    public function hapus($id)
+    {
+        $laporan = $this->AdministratorModel->detail_hapus($id);
+        if ($laporan->foto <> "") {
+            unlink(public_path('file_laporan').'/'.$laporan->foto);
+            unlink(public_path('file_laporan').'/'.$laporan->foto2);
+            unlink(public_path('file_laporan').'/'.$laporan->foto3);
+        }
+        $this->AdministratorModel->hapus_laporan($id);
+        return redirect()->route('v_hapus')->with('pesan','Laporan Berhasil Dihapus!');
     }
     
 }

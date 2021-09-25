@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 use App\Models\AdminModel;
 use App\Models\LaporanModel;
 
@@ -47,7 +48,6 @@ class AdminController extends Controller
     {
         
         Request()->validate([
-            'nama' => 'required',
             'judul' => 'required',
             'lokasi' => 'required',
             'isi' => 'required',
@@ -94,7 +94,6 @@ class AdminController extends Controller
 
         $data = [
             'id_pelapor' => Request()->id_pelapor,
-            'nama' => Request()->nama,
             'judul' => Request()->judul,
             'lokasi' => Request()->lokasi,
             'isi' => Request()->isi,

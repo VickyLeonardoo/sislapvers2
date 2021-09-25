@@ -1,14 +1,15 @@
 @extends('user.template.header')
 @section('content')
-@if (session('pesan'))
+
+    
+<div class="col-md-12">
+  @if (session('pesan'))
     <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <h4><i class="icon fa fa-check"></i>Sukses</h4>
         {{ session('pesan') }}
       </div>
     @endif
-    
-<div class="col-md-12">
     <!-- general form elements -->
     <div class="card card-info">
       <div class="card-header">
@@ -23,16 +24,10 @@
             <div class="text-danger">
         </div>
           </div>
-          <div class="form-group">
-            <input type="hidden" class="form-control" value="{{Auth::guard('pelapor')->user()->nama }}" name="nama">
-            <div class="text-danger">
-        </div>
-          </div>
-        
-        <div class="card-body">
+          <div class="card-body">
           <div class="form-group">
             <label for="exampleInputEmail1">Judul</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="judul">
+            <input type="text" class="form-control" autocomplete="off" id="exampleInputEmail1" name="judul">
             <div class="text-danger">
                 @error('judul')
                 {{ $message }}
@@ -41,7 +36,7 @@
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Lokasi</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" name="lokasi">
+            <input type="text" class="form-control" autocomplete="off" id="exampleInputEmail1" name="lokasi">
             <div class="text-danger">
                 @error('lokasi')
                 {{ $message }}

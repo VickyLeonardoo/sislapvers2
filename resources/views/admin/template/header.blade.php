@@ -81,7 +81,8 @@
           <img src="{{ asset('assets') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::guard('user')->user()->nama }}</a>
+          <a href="#" class="d-block"><b>{{ Auth::guard('user')->user()->nama }}</b></a>
+          <p class="text-light">{{ Auth::guard('user')->user()->nik }}</p>
         </div>
       </div>
 

@@ -44,6 +44,7 @@ Route::group(['middleware' => ['cek_login:999']],function(){
     Route::get('/daftar/laporan',[UserController::class,'v_laporan'])->name('v_laporan');
     Route::post('/simpan/laporan',[LaporanController::class,'simpan_laporan']);
     Route::get('/tanggapan/{id}',[UserController::class,'v_tanggapan']);
+    Route::get('/tanggapan-v/{id}',[UserController::class,'v_tanggapan1']);
     Route::post('/laporan/puas/{id}',[UserController::class,'laporan_puas']);
     Route::post('/laporan/kurang/{id}',[UserController::class,'laporan_kurang']);
 
@@ -125,11 +126,13 @@ Route::group(['middleware' => ['cek_login:99']],function(){
     Route::get('/tanggapan/petugas/{id}',[AdministratorController::class,'v_tanggapan']);
     Route::get('/cetak/laporan/',[AdministratorController::class,'cetak']);
     Route::get('/cetak/laporan/selesai',[AdministratorController::class,'cetak_selesai']);
+    Route::get('/laporan/hapus-laporan/{id}',[AdministratorController::class,'hapus']);
+    Route::get('/laporan/hapus-laporan',[AdministratorController::class,'hapus_laporan'])->name('v_hapus');
 
 
 
     Route::get('/cetak/laporan/tgl/{tglawal}/{tglakhir}',[AdministratorController::class,'cetakPerTanggal']);
-    Route::get('/cetak/laporan/selesai/tgl/{tglawal}/{tglakhir}',[AdministratorController::class,'cetakPerTanggalSelesai']);
+    Route::get('/cetak/laporan/selesai/tgl/{tglawal}/{tglakhir}/{respon}',[AdministratorController::class,'cetakPerTanggalSelesai']);
 
 });
 });
