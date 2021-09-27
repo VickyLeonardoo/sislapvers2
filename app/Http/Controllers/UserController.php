@@ -48,6 +48,10 @@ class UserController extends Controller
 
     public function v_tanggapan($id)
     {
+        if (!$this->LaporanModel->detailData($id)) {
+            abort(404);
+         }
+        
         $data = [
             'tanggapan' => $this->TanggapanModel->v_tanggapan($id),
         ];

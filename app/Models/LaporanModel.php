@@ -34,6 +34,7 @@ class LaporanModel extends Model
             ->get();
         }elseif(Auth::guard('user')->user()->level == 99){
             return DB::table('pengaduan')
+            ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
             ->where('status','1')
             ->get();
         }
@@ -139,5 +140,14 @@ class LaporanModel extends Model
     public function ubahData($id,$data)
     {
         DB::table('pengaduan')->where('id_pengaduan',$id)->update($data);
+    }
+
+    public function detailData($id)
+    {
+        return DB::table('pengaduan')
+        ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
+        ->where('pengaduan.id_pengaduan',$id)
+        ->where('pengaduan.id_pelapor',Auth::guard('pelapor')->user()->id)
+        ->first();
     }
 }

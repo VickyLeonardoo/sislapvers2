@@ -86,7 +86,7 @@ class AdministratorController extends Controller
             'level' => 2,
         ];
         $this->AdministratorModel->tambah_admin($data);       
-        return redirect()->route('administrator')->with('berhasil','Kamu Berhasil Mendaftar,Silahkan Login!');
+        return redirect()->route('adminis_admin')->with('pesan','Data Berhasil Ditambahkan!');
     }
 
     public function tambah_unit()
@@ -101,7 +101,7 @@ class AdministratorController extends Controller
             'level' => 2,
         ];
         $this->AdministratorModel->tambah_admin($data);       
-        return redirect()->route('administrator')->with('berhasil','Kamu Berhasil Mendaftar,Silahkan Login!');
+        return redirect()->route('v_unit')->with('pesan','Data Berhasil Ditambahkan!');
     }
 
     public function tambah_manjemen()
@@ -116,7 +116,7 @@ class AdministratorController extends Controller
             'level' => 3,
         ];
         $this->AdministratorModel->tambah_manajemen($data);       
-        return redirect()->route('administrator')->with('berhasil','Kamu Berhasil Mendaftar,Silahkan Login!');
+        return redirect()->route('v_manajamen')->with('pesan','Data Berhasil Ditambahkan!');
     }
 
     public function tambah_divisi()
@@ -126,7 +126,7 @@ class AdministratorController extends Controller
             'nama_div' => Request()->nama,
         ];
         $this->AdministratorModel->tambah_divisi($data);       
-        return redirect()->route('administrator')->with('berhasil','Kamu Berhasil Mendaftar,Silahkan Login!');
+        return redirect()->route('v_divisi')->with('pesan','Data Berhasil Ditambahkan!');
     }
 
     public function v_laporan_masuk()
@@ -253,6 +253,19 @@ class AdministratorController extends Controller
         }
         $this->AdministratorModel->hapus_laporan($id);
         return redirect()->route('v_hapus')->with('pesan','Laporan Berhasil Dihapus!');
+    }
+
+    public function hapus_divisi($id)
+    {
+        $laporan = $this->AdministratorModel->detail_divisi($id);
+        
+        $this->AdministratorModel->hapus_divisi($id);
+        return redirect()->route('v_divisi')->with('pesan','Data Berhasil Dihapus!');
+    }
+
+    public function hapus_admin($id)
+    {
+        $laporan = $this->AdministratorModel->detail_admin($id);
     }
     
 }

@@ -31,7 +31,7 @@
                   <td>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#alasanModal{{ $data->id_pengaduan }}">
-                      Tanggapan Dari Poltek
+                      Tanggapan Dari Politeknik
                     </button>
                   </td>
                   

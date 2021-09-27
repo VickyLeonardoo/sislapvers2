@@ -77,4 +77,25 @@ class AdministratorModel extends Model
         return DB::table('pengaduan')->where('id_pengaduan', $id)->first();
     }
 
+    public function v_laporan_total1()
+    {
+       return DB::table('pengaduan')
+        ->first();
+    }
+
+    public function hapus_laporan_total()
+    {
+         DB::table('pengaduan')->where('status','1')->delete();
+    }
+
+    public function detail_divisi($id)
+    {
+        return DB::table('unit')->where('id_divisi', $id)->first();
+    }
+
+    public function hapus_divisi($id)
+    {
+        DB::table('unit')->where('id_divisi', $id)->delete();
+    }
+
 }

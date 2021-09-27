@@ -37,7 +37,7 @@
                   <td>
                     <!-- Button trigger modal -->
                     <a href="/tanggapan/petugas/{{ $data->id_pengaduan }}" class="btn btn-info">
-                      <span class="text">Tanggapan Dari Poltek</span>
+                      <span class="text">Tanggapan Dari Politeknik</span>
                   </a> 
                   </td>
                   

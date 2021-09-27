@@ -110,9 +110,9 @@ Route::group(['middleware' => ['auth:user']],function(){
 Route::group(['middleware' => ['cek_login:99']],function(){
     Route::get('/administrator',[AdministratorController::class,'home'])->name('administrator');
     Route::get('/administrator/data/admin',[AdministratorController::class,'v_data_admin'])->name('adminis_admin');
-    Route::get('/administrator/data/unit',[AdministratorController::class,'v_data_unit']);
-    Route::get('/administrator/data/manajemen',[AdministratorController::class,'v_data_manajemen']);
-    Route::get('/administrator/data/divisi',[AdministratorController::class,'v_data_divisi']);
+    Route::get('/administrator/data/unit',[AdministratorController::class,'v_data_unit'])->name('v_unit');
+    Route::get('/administrator/data/manajemen',[AdministratorController::class,'v_data_manajemen'])->name('v_manajemen');
+    Route::get('/administrator/data/divisi',[AdministratorController::class,'v_data_divisi'])->name('v_divisi');
     Route::get('/administrator/laporan/masuk',[AdministratorController::class,'v_laporan_masuk']);
     Route::get('/administrator/laporan/proses',[AdministratorController::class,'v_laporan_proses']);
     Route::get('/administrator/laporan/selesai',[AdministratorController::class,'v_laporan_selesai']);
@@ -128,9 +128,9 @@ Route::group(['middleware' => ['cek_login:99']],function(){
     Route::get('/cetak/laporan/selesai',[AdministratorController::class,'cetak_selesai']);
     Route::get('/laporan/hapus-laporan/{id}',[AdministratorController::class,'hapus']);
     Route::get('/laporan/hapus-laporan',[AdministratorController::class,'hapus_laporan'])->name('v_hapus');
-
-
-
+    Route::get('/administrator/hapus-laporan-total',[AdministratorController::class,'hapus_laporan_total']);
+    Route::get('/administrator/hapus-divisi/{id}',[AdministratorController::class,'hapus_divisi']);
+    
     Route::get('/cetak/laporan/tgl/{tglawal}/{tglakhir}',[AdministratorController::class,'cetakPerTanggal']);
     Route::get('/cetak/laporan/selesai/tgl/{tglawal}/{tglakhir}/{respon}',[AdministratorController::class,'cetakPerTanggalSelesai']);
 

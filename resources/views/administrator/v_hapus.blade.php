@@ -51,7 +51,7 @@
           </tbody>
 
         </table>
-    <button class="btn btn-danger" data-toggle="modal" data-target="#delete">Hapus Seluruh Laporan</button>
+    {{-- <button class="btn btn-danger" data-toggle="modal" data-target="#delete">Hapus Seluruh Laporan</button> --}}
 
       </div>
       <!-- /.card-body -->
@@ -77,7 +77,7 @@
       </div>
   </div>
   @endforeach
-
+{{-- 
   @foreach ($laporan as $data)
   <div class="modal modal-danger fade" id="delete">
       <div class="modal-dialog modal-lg">
@@ -97,10 +97,10 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">No</button>
-            <a href="/administrator/admin/delete/{{ $data->id }}" class="btn btn-outline">Yes</a>
+            <a href="/administrator/hapus-laporan-total" class="btn btn-outline">Yes</a>
           </div>
         </div>
       </div>
-  </div>
-  @endforeach
+  </div> 
+  @endforeach --}}
 @endsection
