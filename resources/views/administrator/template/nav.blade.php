@@ -81,7 +81,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/administrator/laporan/total" class="nav-link {{ request()->is('administrator/laporan/masuk') ? 'active' : '' }}">
+                <a href="/administrator/laporan-total" class="nav-link {{ request()->is('administrator/laporan-total') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Total</p>
                 </a>

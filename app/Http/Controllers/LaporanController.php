@@ -29,8 +29,9 @@ class LaporanController extends Controller
             'tgl_kejadian' => 'required',
             'unit' => 'required',
             'foto' => 'required|mimes:jpg,bmp,png,mkv,mp4|max:10000',
-            'foto2' => 'mimes:jpg,bmp,png,mkv,mp4|max:10000',
-            'foto3' => 'mimes:jpg,bmp,png,mkv,mp4|max:10000',
+            'foto2' => 'required|mimes:jpg,bmp,png,mkv,mp4|max:10000',
+            'foto3' => 'required|mimes:jpg,bmp,png,mkv,mp4|max:10000',
+            'tgl_kejadian' => 'required',
         ],[
             'judul.required' => 'Judul Wajib Diisi',
             'lokasi.required' => 'Lokasi Wajib Diisi',
@@ -40,6 +41,8 @@ class LaporanController extends Controller
             'foto.required' => 'Foto Wajib Diisi',
             'foto.max' => 'Ukuran Max 10MB',
             'foto2.max' => 'Ukuran Max 10MB',
+            'foto2.required' => 'Foto Wajib Diisi',
+            'foto3.required' => 'Foto Wajib Diisi',
             'foto3.max' => 'Ukuran Max 10MB',
         ]);
         

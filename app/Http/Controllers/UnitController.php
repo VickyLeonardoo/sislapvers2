@@ -50,7 +50,7 @@ class UnitController extends Controller
             'laporan' => $this->TanggapanModel->v_tanggapan_tolak(),
             'unit' =>$this->UnitModel->v_unit(),
         ];
-        return view('unit.v_tanggapan_tolak',$data);
+        return view('unit.v_tanggapan_tolak',$data)->with('pesan','Tanggapan Berhasil Dikirim,Menunggu Verifikasi Manajemen');
     }
 
     

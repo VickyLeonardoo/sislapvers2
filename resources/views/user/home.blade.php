@@ -54,7 +54,7 @@
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Tanggal Kejadian</label>
-            <input type="date" class="form-control" id="exampleInputEmail1" name="tgl_kejadian">
+            <input type="date" class="form-control" id="exampleInputEmail1" name="tgl_kejadian" value="{{ old('date') }}">
           </div>
 
           <label>Unit Tujuan:</label>

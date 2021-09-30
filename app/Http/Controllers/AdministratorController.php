@@ -98,7 +98,7 @@ class AdministratorController extends Controller
             'username' => Request()->username,
             'password' => Hash::make(request()->password),
             'id_divisi' => Request()->unit,
-            'level' => 2,
+            'level' => 4,
         ];
         $this->AdministratorModel->tambah_admin($data);       
         return redirect()->route('v_unit')->with('pesan','Data Berhasil Ditambahkan!');
@@ -266,6 +266,14 @@ class AdministratorController extends Controller
     public function hapus_admin($id)
     {
         $laporan = $this->AdministratorModel->detail_admin($id);
+    }
+
+    public function lap_total()
+    {
+        $data = [
+            'laporan' => $this->AdministratorModel->v_lap_total(),
+        ];
+        return view('administrator.v_laporan_total',$data);
     }
     
 }

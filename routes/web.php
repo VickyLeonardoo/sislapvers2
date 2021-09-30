@@ -130,6 +130,7 @@ Route::group(['middleware' => ['cek_login:99']],function(){
     Route::get('/laporan/hapus-laporan',[AdministratorController::class,'hapus_laporan'])->name('v_hapus');
     Route::get('/administrator/hapus-laporan-total',[AdministratorController::class,'hapus_laporan_total']);
     Route::get('/administrator/hapus-divisi/{id}',[AdministratorController::class,'hapus_divisi']);
+    Route::get('/administrator/laporan-total',[AdministratorController::class,'lap_total']);
     
     Route::get('/cetak/laporan/tgl/{tglawal}/{tglakhir}',[AdministratorController::class,'cetakPerTanggal']);
     Route::get('/cetak/laporan/selesai/tgl/{tglawal}/{tglakhir}/{respon}',[AdministratorController::class,'cetakPerTanggalSelesai']);

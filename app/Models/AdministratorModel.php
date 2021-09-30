@@ -98,4 +98,10 @@ class AdministratorModel extends Model
         DB::table('unit')->where('id_divisi', $id)->delete();
     }
 
+    public function v_lap_total()
+    {
+        return DB::table('pengaduan')
+        ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
+        ->get();
+    }
 }
