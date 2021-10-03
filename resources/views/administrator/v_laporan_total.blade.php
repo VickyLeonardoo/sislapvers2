@@ -16,7 +16,7 @@
             <th>Tgl Laporan</th>
             <th>Judul</th>
             <th>Isi</th>
-            <th></th>
+            <th>Status Laporan</th>
           </tr>
           </thead>
           <tbody>
@@ -28,8 +28,15 @@
                   <td>{{ date('d-M-y', strtotime($data->tgl_laporan)) }}</td>
                   <td>{{ $data->judul }}</td>
                   <td>{{ $data->isi }}</td>
-                  <td>
-                  </td>
+                  @if ($data->status == 1)
+                      <td>Laporan Menunggu Verifikasi</td>
+                  @elseif($data->status == 2)
+                  <td>Laporan Sedang Diproses</td>
+                  @elseif($data->status == 3 )
+                  <td>Laporan Sedang Diproses</td>
+                  @else 
+                  <td>Laporan Ditolak</td>
+                  @endif
                 </tr>
             @endforeach
             </tr>

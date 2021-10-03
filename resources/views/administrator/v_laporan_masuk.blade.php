@@ -16,7 +16,6 @@
             <th>Tgl Laporan</th>
             <th>Judul</th>
             <th>Isi</th>
-            <th></th>
           </tr>
           </thead>
           <tbody>
@@ -28,8 +27,6 @@
                   <td>{{ date('d-M-y', strtotime($data->tgl_laporan)) }}</td>
                   <td>{{ $data->judul }}</td>
                   <td>{{ $data->isi }}</td>
-                  <td>
-                  </td>
                 </tr>
             @endforeach
             </tr>

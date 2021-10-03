@@ -120,7 +120,7 @@ class LaporanController extends Controller
                 'id_divisi' => Request()->unit,
             ];
         $this->LaporanModel->ubahData($id,$data);
-        return redirect()->route('m_masuk');
+        return redirect()->route('m_masuk')->with('pesan','Laporan Berhasil Diteruskan');
         }
     }
 
