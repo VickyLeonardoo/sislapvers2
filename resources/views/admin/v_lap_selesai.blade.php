@@ -102,7 +102,30 @@
             <div class="form-group">
               <label class="col-form-label">Unit</label>
               <input type="text" class="form-control" value="{{ $data->nama_div}}">
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Bukti Foto:</label><br>
+                <img src="{{ url('file_laporan/'.$data->foto) }}" width="400">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Bukti Foto:</label><br>
+                <img src="{{ url('file_laporan/'.$data->foto2) }}" width="400">
+                </div>
+              </div>
 
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Bukti Foto:</label><br>
+                <img src="{{ url('file_laporan/'.$data->foto3) }}" width="400">
+                </div>
+              </div>
             </div>
           </form>
         </div>

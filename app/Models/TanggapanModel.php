@@ -58,6 +58,11 @@ class TanggapanModel extends Model
         DB::table('tanggapan')->where('id_tanggapan',$id)->update($data);
     }
 
+    public function update_status($idp,$status)
+    {
+        DB::table('pengaduan')->where('id_pengaduan',$idp)->update($status);
+    }
+
     public function kembalikanTanggapan($data)
     {
         DB::table('tktanggapan')->insert($data);

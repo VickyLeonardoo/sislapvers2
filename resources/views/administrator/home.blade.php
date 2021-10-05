@@ -112,7 +112,7 @@
       <div class="inner">
         <h3>{{ $selesai }}</h3>
 
-        <p>Laporan Selesai</p>
+        <p>Laporan Puas</p>
       </div>
       <div class="icon">
         <i class="fas fa-check"></i>
@@ -126,7 +126,7 @@
       <div class="inner">
         <h3>{{ $respon_tk }}</h3>
 
-        <p>Laporan Selesai</p>
+        <p>Laporan Tidak Puas</p>
       </div>
       <div class="icon">
         <i class="fas fa-times"></i>

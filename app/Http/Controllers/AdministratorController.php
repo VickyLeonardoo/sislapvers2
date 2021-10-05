@@ -156,6 +156,15 @@ class AdministratorController extends Controller
         return view('administrator.v_laporan_selesai',$data);
     }
 
+    public function v_laporan_selesai_tp()
+    {
+        $data = [
+            'laporan' => $this->LaporanModel->v_lap_selesaiTp(),
+            'unit' => $this->LaporanModel->v_unit(),
+        ];
+        return view('administrator.v_laporan_selesai_tp',$data);
+    }
+
     public function v_laporan_ditolak()
     {
         $data = [

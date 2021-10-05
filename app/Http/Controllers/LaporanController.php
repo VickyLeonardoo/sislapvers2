@@ -81,6 +81,7 @@ class LaporanController extends Controller
             // 'kd' => Request()->unit,
             'id_divisi' => Request()->unit,
             'status' => 1,
+            'status_tanggapan' => 1,
             'tgl_laporan' => Carbon::now()->format('Y-m-d'),
             'foto' => $fileName,
             'foto2' => $fileNames,
@@ -201,7 +202,7 @@ class LaporanController extends Controller
         }
     }
 
-    public function tanggapi()
+    public function tanggapi($id)
     {
         if (Auth::guard('user')->user()->level == 4) {
             $data = [
@@ -210,10 +211,11 @@ class LaporanController extends Controller
                 'tgl_tanggapan'=> Carbon::now()->format('Y-m-d'),
                 'status_tanggapan' => 1,
             ];
-            $peng = [
-                'status_tanggapan' => 1,
+            $status = [
+                'status_tanggapan' => 4,
             ];
             $this->TanggapanModel->tanggapi($data);
+            $this->TanggapanModel->update_status($id,$status);
             return redirect()->route('u_masuk');
         }
         elseif (Auth::guard('user')->user()->level == 3) {
@@ -223,18 +225,27 @@ class LaporanController extends Controller
                 'tgl_tanggapan'=> Carbon::now()->format('Y-m-d'),
                 'status_tanggapan' => 4,
             ];
+
+            $status = [
+                'status_tanggapan' => 2,
+            ];
             $this->TanggapanModel->tanggapi($data);
-            return redirect()->route('m_investigasi');
+            $this->TanggapanModel->update_status($id,$status);
+            return redirect()->route('m_investigasi')->with('pesan','Tanggapan Berhasil Dikirim!');
         }
        
     }
 
-    public function kirim_tanggapan($id)
+    public function kirim_tanggapan($id,$idp)
     {
         $data = [
             'status_tanggapan' => 4,
         ];
+        $status = [ 
+            'status_tanggapan' => 2,
+        ];
         $this->TanggapanModel->kirim_tanggapan($id,$data);
+        $this->TanggapanModel->update_status($idp,$status);
         return redirect()->route('m_tanggapan');
     }
 

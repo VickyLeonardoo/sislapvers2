@@ -93,7 +93,30 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Bukti Foto:</label><br>
+                <img src="{{ url('file_laporan/'.$data->foto) }}" width="400">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Bukti Foto:</label><br>
+                <img src="{{ url('file_laporan/'.$data->foto2) }}" width="400">
+                </div>
+              </div>
 
+              <div class="col-sm-6">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Bukti Foto:</label><br>
+                <img src="{{ url('file_laporan/'.$data->foto3) }}" width="400">
+                </div>
+              </div>
+            </div>
             <!-- input states -->
             <div class="form-group">
               <label class="col-form-label" for="inputSuccess"> Isi</label>
@@ -108,8 +131,6 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

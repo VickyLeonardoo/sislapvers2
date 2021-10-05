@@ -27,7 +27,7 @@
           <div class="card-body">
           <div class="form-group">
             <label for="exampleInputEmail1">Judul</label>
-            <input type="text" class="form-control" autocomplete="off" id="exampleInputEmail1" name="judul">
+            <input type="text" class="form-control" autocomplete="off" id="exampleInputEmail1" name="judul" value="{{ old('judul') }}">
             <div class="text-danger">
                 @error('judul')
                 {{ $message }}
@@ -36,7 +36,7 @@
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Lokasi</label>
-            <input type="text" class="form-control" autocomplete="off" id="exampleInputEmail1" name="lokasi">
+            <input type="text" class="form-control" autocomplete="off" id="exampleInputEmail1" name="lokasi" value="{{ old('lokasi') }}">
             <div class="text-danger">
                 @error('lokasi')
                 {{ $message }}

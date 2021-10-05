@@ -56,6 +56,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              
               <li class="nav-item">
                 <a href="/administrator/laporan/masuk" class="nav-link {{ request()->is('administrator/laporan/masuk') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
@@ -66,12 +67,6 @@
                 <a href="/administrator/laporan/proses" class="nav-link {{ request()->is('administrator/laporan/proses') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Proses</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/administrator/laporan/selesai" class="nav-link {{ request()->is('administrator/laporan/selesai') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Laporan Selesai</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -86,9 +81,33 @@
                   <p>Laporan Total</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    Laporan Selesai
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/administrator/laporan/selesai" class="nav-link {{ request()->is('administrator/laporan/selesai') ? 'active' : '' }}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Laporan Puas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/administrator/laporan/selesai-tidak-puas" class="nav-link {{ request()->is('administrator/laporan/selesai-tidak-puas') ? 'active' : '' }}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Laporan Tidak Puas</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
              </ul>
             
           </li>
+          
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-print"></i>

@@ -21,12 +21,12 @@
                     <?php $i=1?>
                     @foreach ($laporan as $data)
                         <tr>
-                          @if ($data->respon == 2)
-                          <td bgcolor="tomato">{{ $data->id_pengaduan }}</td>
-                          @elseif($data->respon == 1)
-                          <td bgcolor="MediumSeaGreen">{{ $data->id_pengaduan }}</td>
-                          @else 
+                          @if ($data->status_tanggapan == 1)
                           <td>{{ $data->id_pengaduan }}</td>
+                          @elseif($data->status_tanggapan == 2)
+                          <td>{{ $data->id_pengaduan }} <i class="far fa-check-circle"></i></td>    
+                          @else 
+                          <td>{{ $data->id_pengaduan }} <i class="far fa-check-circle"></i></td>                          
                           @endif
                           <td>{{ $data->nama }}</td>
                           <td>{{ $data->judul }}</td>
@@ -153,10 +153,10 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+      </div>    
       <div class="modal-body">
         <div class="card-body">
-          <form method="POST" action="/unit/laporan/tanggapi">
+          <form method="POST" action="/unit/laporan/tanggapi-{{ $data->id_pengaduan }}">
             @csrf
             <!-- input states -->
             <input type="hidden" name="id" value="{{ $data->id_pengaduan }}">

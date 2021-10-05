@@ -30,7 +30,7 @@
                     <td>{{ $data->tanggapan }}</td>
                     <td>
                       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#alasanModal{{ $data->id_tanggapan }}">
-                        Tanggapi
+                        Tanggapan Dari Manajemen
                       </button>
                     </td>
                 </tr>

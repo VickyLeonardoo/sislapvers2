@@ -116,6 +116,16 @@ class LaporanModel extends Model
         
     }
 
+    public function v_lap_selesaiTp()
+    {
+        return DB::table('pengaduan')
+            ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+            ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
+            ->where('pengaduan.status', '3')
+            ->where('pengaduan.respon','2')
+            ->get();
+    }
+
     public function v_laporan_ditolak(){
         return DB::table('pengaduan')
         ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')

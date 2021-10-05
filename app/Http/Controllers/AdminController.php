@@ -31,6 +31,7 @@ class AdminController extends Controller
         $data = [
             'status' => 66,
             'alasan' => Request()->alasan,
+            'status_tanggapan' => 3,
         ];
         $this->LaporanModel->ubahData($id,$data);
         return redirect()->route('masuk');

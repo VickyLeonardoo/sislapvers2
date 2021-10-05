@@ -76,11 +76,11 @@ Route::group(['middleware' => ['cek_login:3']],function(){
     Route::get('/manajemen/laporan/selesai',[LaporanController::class,'v_lap_selesai'])->name('m_selesai');
     Route::get('/manajemen/laporan/investigasi',[LaporanController::class,'v_lap_proses'])->name('m_investigasi');
     Route::get('/manajemen/tanggapan/masuk',[ManajemenController::Class,'v_tanggapan'])->name('m_tanggapan');
-    Route::post('/manajemen/verifikasi/tanggapan/{id}',[LaporanController::Class,'kirim_tanggapan']);
+    Route::post('/manajemen/verifikasi/tanggapan/{id}-{idp}',[LaporanController::Class,'kirim_tanggapan']);
     Route::post('/manajemen/verifikasi/tanggapan/kembalikan/{id}',[LaporanController::Class,'kembalikan_tanggapan']);
     Route::post('/manajemen/update/laporan/{id}',[LaporanController::Class,'update_laporan']);
     Route::post('/manajemen/update/{id}',[LaporanController::Class,'ubah_laporan_inv']);
-    Route::post('/manajemen/laporan/tanggapi',[LaporanController::Class,'tanggapi']);
+    Route::post('/manajemen/laporan/tanggapi-{id}',[LaporanController::Class,'tanggapi']);
     Route::post('/manajemen/laporan/selesaikan/{id}',[ManajemenController::Class,'update_investigasi']);
 
 
@@ -95,7 +95,7 @@ Route::group(['middleware' => ['cek_login:4']],function(){
     Route::get('/unit/laporan/masuk',[LaporanController::class,'v_lap_masuk'])->name('u_masuk');
     Route::get('/unit/laporan/selesai',[LaporanController::class,'v_lap_selesai'])->name('u_selesai');
     Route::post('/unit/laporan/selesaikan/{id}',[LaporanController::class,'update_laporan']);
-    Route::post('/unit/laporan/tanggapi',[LaporanController::class,'tanggapi']);
+    Route::post('/unit/laporan/tanggapi-{id}',[LaporanController::class,'tanggapi']);
     Route::get('/unit/tanggapan/ditolak',[UnitController::class,'tanggapan_ditolak'])->name('u_tanggapan');
     Route::post('/unit/laporan/revisi/tanggapan/{id}',[LaporanController::class,'perbaiki_tanggapan']);
     Route::get('/unit/tanggapan/sukses/{id}',[LaporanController::class,'suksesTanggapan']);
@@ -116,6 +116,7 @@ Route::group(['middleware' => ['cek_login:99']],function(){
     Route::get('/administrator/laporan/masuk',[AdministratorController::class,'v_laporan_masuk']);
     Route::get('/administrator/laporan/proses',[AdministratorController::class,'v_laporan_proses']);
     Route::get('/administrator/laporan/selesai',[AdministratorController::class,'v_laporan_selesai']);
+    Route::get('/administrator/laporan/selesai-tidak-puas',[AdministratorController::class,'v_laporan_selesai_tp']);
     Route::get('/administrator/laporan/ditolak',[AdministratorController::class,'v_laporan_ditolak']);
     Route::post('/administrator/tambah/admin',[AdministratorController::class,'tambah_admin']);
     Route::post('/administrator/tambah/unit',[AdministratorController::class,'tambah_unit']);

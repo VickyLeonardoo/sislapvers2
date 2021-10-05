@@ -1,6 +1,13 @@
 @extends('manajemen.template.header')
 @section('content')
           <div class="col-12">
+            @if (session('pesan'))
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i>Sukses</h4>
+        {{ session('pesan') }}
+      </div>
+    @endif
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title"></h3>
@@ -173,7 +180,7 @@
       </div>
       <div class="modal-body">
         <div class="card-body">
-          <form method="POST" action="/manajemen/laporan/tanggapi">
+          <form method="POST" action="/manajemen/laporan/tanggapi-{{ $data->id_pengaduan }}">
             @csrf
             <!-- input states -->
             <input type="hidden" name="id" value="{{ $data->id_pengaduan }}">
