@@ -1,4 +1,5 @@
 @extends('administrator.template.header')
+@section('title','Data Admin')
 @section('content')
           <div class="col-12">
             @if (session('pesan'))

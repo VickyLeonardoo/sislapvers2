@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Hash;
+use URL;
 use App\Models\AdministratorModel;
 use App\Models\UnitModel;
 use App\Models\LaporanModel;
@@ -254,14 +255,15 @@ class AdministratorController extends Controller
 
     public function hapus($id)
     {
-        $laporan = $this->AdministratorModel->detail_hapus($id);
-        if ($laporan->foto <> "") {
-            unlink(public_path('file_laporan').'/'.$laporan->foto);
-            unlink(public_path('file_laporan').'/'.$laporan->foto2);
-            unlink(public_path('file_laporan').'/'.$laporan->foto3);
+        $image = DB::table('pengaduan')->where('id_pengaduan',$id)->first();
+        $images = explode('|',$image->foto);
+
+        foreach ($images as $item) {
+            unlink($item);
         }
+
         $this->AdministratorModel->hapus_laporan($id);
-        return redirect()->route('v_hapus')->with('pesan','Laporan Berhasil Dihapus!');
+        return redirect()->route('v_hapus')->with('pesan','Data Berhasil Di Tambahkan !! ');
     }
 
     public function hapus_divisi($id)

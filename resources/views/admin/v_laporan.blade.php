@@ -23,7 +23,7 @@
         
         <div class="card-body">
           <div class="form-group">
-            <label for="exampleInputEmail1">Judul</label>
+            <label for="exampleInputEmail1">Judul:</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="judul">
             <div class="text-danger">
                 @error('judul')
@@ -32,7 +32,7 @@
         </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Lokasi</label>
+            <label for="exampleInputEmail1">Lokasi:</label>
             <input type="text" class="form-control" id="exampleInputEmail1" name="lokasi">
             <div class="text-danger">
                 @error('lokasi')
@@ -41,7 +41,7 @@
         </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Isi</label>
+            <label for="exampleInputEmail1">Isi:</label>
             <textarea class="form-control" rows="7" name="isi">{{ old('isi') }}</textarea>
             <div class="text-danger">
                 @error('isi')
@@ -50,7 +50,7 @@
         </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Tanggal Kejadian</label>
+            <label for="exampleInputEmail1">Tanggal Kejadian:</label>
             <input type="date" class="form-control" id="exampleInputEmail1" name="tgl_kejadian">
           </div>
 
@@ -61,34 +61,15 @@
                     </option>
                 @endforeach    
             </select>
-
-          <div class="form-group cols-sm-6">
-            <label for="">Upload Bukti Pendukung 1:</label>
-            <input type="file" class="form-control form-control-user" name="foto">
-            <div class="text-danger">
-                    @error('foto')
-                    {{ $message }}
-                    @enderror
+            <div class="form-group cols-sm-6">
+              <label for="">Upload Bukti Pendukung:</label>
+              <input type="file" class="form-control form-control-user" name="image[]" multiple>
+              <div class="text-danger">
+                      @error('foto')
+                      {{ $message }}
+                      @enderror
+              </div>
             </div>
-          </div>
-          <div class="form-group cols-sm-6">
-            <label for="">Upload Bukti Pendukung 2:</label>
-            <input type="file" class="form-control form-control-user" name="foto2">
-            <div class="text-danger">
-                    @error('foto2')
-                    {{ $message }}
-                    @enderror
-            </div>
-          </div>
-          <div class="form-group cols-sm-6">
-            <label for="">Upload Bukti Pendukung 3:</label>
-            <input type="file" class="form-control form-control-user" name="foto3">
-            <div class="text-danger">
-                    @error('foto3')
-                    {{ $message }}
-                    @enderror
-            </div>
-          </div>
         </div>
         <!-- /.card-body -->
 

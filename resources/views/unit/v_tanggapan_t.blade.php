@@ -58,7 +58,7 @@
           <form>
             @csrf
                 <!-- text input -->
-                  <label>Alasan Penolakan</label>
+                  <label>Alasan Penolakan:</label>
                   <textarea class="form-control" rows="5">{{ $data->alasan_tolak }}</textarea>
           </form>
         </div>

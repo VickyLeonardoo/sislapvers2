@@ -41,6 +41,15 @@ class LaporanModel extends Model
         
     }
 
+    public function v_laporan_masuk()
+    {
+        return DB::table('pengaduan')
+            ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+            ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
+            ->select('pengaduan.*','unit.*','pelapor.*')
+            ->where('pengaduan.status', '1')->get();
+    }
+
     public function v_lap_proses()
     {
         if (Auth::guard('user')->user()->level == 2) {
@@ -86,6 +95,7 @@ class LaporanModel extends Model
             ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
             ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
             ->where('status', '3')
+            ->where('respon','1')
             ->get();
         }
         elseif(Auth::guard('user')->user()->level == 4){
@@ -140,6 +150,8 @@ class LaporanModel extends Model
         ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
         ->where('pengaduan.id_pelapor', Auth::guard('pelapor')->user()->id)
         ->get();
+
+        
     }
 
     public function tambahData($data)
@@ -160,4 +172,24 @@ class LaporanModel extends Model
         ->where('pengaduan.id_pelapor',Auth::guard('pelapor')->user()->id)
         ->first();
     }
+
+    public function laporan_rekap()
+    {
+        return DB::table('pengaduan')
+            ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+            ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
+            ->where('pengaduan.status','2')
+            ->get();
+    }
+
+    public function laporan_rekap_puas()
+    {
+        return DB::table('pengaduan')
+            ->join('unit','pengaduan.id_divisi','=','unit.id_divisi')
+            ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
+            ->where('pengaduan.status', '3')
+            ->where('pengaduan.respon','1')
+            ->get();
+    }
+
 }

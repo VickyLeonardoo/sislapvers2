@@ -5,8 +5,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdministratorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsersController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\RekapController;
 use App\Http\Controllers\ManajemenController;
 
 /*
@@ -20,20 +22,26 @@ use App\Http\Controllers\ManajemenController;
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Route::get('/login', function () {
+//     return view('login');
+// });
+
+// Route::get('/cobacoba', function () {
+//     return view('cobacb');
+// });
 
 //Login And Register
-Route::get('/login',[UserController::class,'login'])->name('login');
+Route::get('/',[UserController::class,'login'])->name('login');
 Route::get('/register',[UserController::class,'register'])->name('register');
 
-Route::post('/tambah/user',[UserController::class,'tambah_user']);
+Route::post('/tambah/user',[UsersController::class,'store']);
+
 
 //Proses Login
 Route::post('/proses_login',[AuthController::class,'proses_login']);
 Route::get('/logout',[AuthController::class,'logout']);
 
+Route::get('/user/verify/{token}',[UsersController::class,'verifyEmail'])->name('user.verify');
 
 
 
@@ -43,10 +51,11 @@ Route::group(['middleware' => ['cek_login:999']],function(){
     Route::get('/lapor',[UserController::class,'home'])->name('user');
     Route::get('/daftar/laporan',[UserController::class,'v_laporan'])->name('v_laporan');
     Route::post('/simpan/laporan',[LaporanController::class,'simpan_laporan']);
-    Route::get('/tanggapan/{id}',[UserController::class,'v_tanggapan']);
+    Route::get('/tanggapan/{id}',[UserController::class,'v_tanggapan'])->name('view_tanggapan');
     Route::get('/tanggapan-v/{id}',[UserController::class,'v_tanggapan1']);
     Route::post('/laporan/puas/{id}',[UserController::class,'laporan_puas']);
     Route::post('/laporan/kurang/{id}',[UserController::class,'laporan_kurang']);
+    Route::post('/pelapor-tanggapi-tanggapan/{id}',[UserController::class,'tanggapi_tanggapan']);
 
 
 });
@@ -55,10 +64,13 @@ Route::group(['middleware' => ['cek_login:999']],function(){
 //Route Admin
 Route::group(['middleware' => ['auth:user']],function(){
 Route::group(['middleware' => ['cek_login:2']],function(){
-    Route::get('/',[AdminController::class,'home'])->name('home');
+    Route::get('/laporan',[AdminController::class,'home'])->name('home');
     Route::get('/laporan/masuk',[LaporanController::class,'v_lap_masuk'])->name('masuk');
     Route::get('/laporan/proses',[LaporanController::class,'v_lap_proses'])->name('proses');
-    Route::get('/laporan/selesai',[LaporanController::class,'v_lap_selesai'])->name('selesai');
+    Route::get('/laporan/selesai-puas',[LaporanController::class,'v_lap_selesai'])->name('selesai');
+    Route::get('/laporan/ditolak',[AdminController::class,'v_tolak_laporan'])->name('tolak_laporan');
+    Route::get('/laporan/selesai-tidak-puas',[AdminController::class,'v_lap_tp'])->name('selesai_tp');
+    Route::get('/laporan/total',[AdminController::class,'v_lap_total'])->name('lap_total');
     Route::post('/laporan/update/{id}',[LaporanController::class,'update_laporan']);
     Route::post('/laporan/tolak/{id}',[AdminController::class,'tolak_laporan']);
     Route::get('/admin/tulis-laporan',[AdminController::class,'v_tulis']);
@@ -82,6 +94,13 @@ Route::group(['middleware' => ['cek_login:3']],function(){
     Route::post('/manajemen/update/{id}',[LaporanController::Class,'ubah_laporan_inv']);
     Route::post('/manajemen/laporan/tanggapi-{id}',[LaporanController::Class,'tanggapi']);
     Route::post('/manajemen/laporan/selesaikan/{id}',[ManajemenController::Class,'update_investigasi']);
+    Route::get('/manajemen/laporan-masuk',[ManajemenController::class,'v_laporan_masuk']);
+    Route::get('/manajemen/laporan-proses',[ManajemenController::class,'v_laporan_proses']);
+    Route::get('/manajemen/laporan-ditolak',[ManajemenController::class,'v_laporan_ditolak']);
+    Route::get('/manajemen/laporan-total',[ManajemenController::class,'v_laporan_total']);
+    Route::get('/manajemen/laporan-selesai-puas',[ManajemenController::class,'v_laporan_selesai_puas']);
+    Route::get('/manajemen/laporan-selesai-tidak-puas',[ManajemenController::class,'v_laporan_selesai_tp']);
+
 
 
     
@@ -100,7 +119,16 @@ Route::group(['middleware' => ['cek_login:4']],function(){
     Route::post('/unit/laporan/revisi/tanggapan/{id}',[LaporanController::class,'perbaiki_tanggapan']);
     Route::get('/unit/tanggapan/sukses/{id}',[LaporanController::class,'suksesTanggapan']);
     Route::get('/unit/tanggapan/tolak/{id}',[LaporanController::class,'v_tanggapan_tolak']);
-
+    Route::get('/unit/tanggapan/pelapor',[UnitController::class,'tanggapan_pelapor'])->name('u_tanggapan_p');
+    Route::post('/unit/laporan/revisi/tanggapan-pelapor/{id}',[LaporanController::class,'perbaiki_tanggapan_pelapor']);
+    
+    Route::get('/unit-laporan-masuk',[RekapController::class,'laporanMasuk']);
+    Route::get('/unit-laporan-proses',[RekapController::class,'laporanProses']);
+    Route::get('/unit-laporan-ditolak',[RekapController::class,'laporanTolak']);
+    Route::get('/unit-laporan-total',[RekapController::class,'laporanTotal']);
+    Route::get('/unit-laporan-selesai-puas',[RekapController::class,'laporanPuas']);
+    Route::get('/unit-laporan-selesai-tidak-puas',[RekapController::class,'laporanTp']);
+    
     
 });
 });
@@ -125,7 +153,7 @@ Route::group(['middleware' => ['cek_login:99']],function(){
     Route::post('/administrator/update/admin/{id}',[AdministratorController::class,'update_admin']);
     Route::post('/administrator/update/password/{id}',[AdministratorController::class,'update_password']);
     Route::get('/tanggapan/petugas/{id}',[AdministratorController::class,'v_tanggapan']);
-    Route::get('/cetak/laporan/',[AdministratorController::class,'cetak']);
+    Route::get('/cetakzzan/',[AdministratorController::class,'cetak']);
     Route::get('/cetak/laporan/selesai',[AdministratorController::class,'cetak_selesai']);
     Route::get('/laporan/hapus-laporan/{id}',[AdministratorController::class,'hapus']);
     Route::get('/laporan/hapus-laporan',[AdministratorController::class,'hapus_laporan'])->name('v_hapus');

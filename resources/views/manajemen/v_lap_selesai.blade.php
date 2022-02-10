@@ -1,4 +1,5 @@
 @extends('manajemen.template.header')
+@section('dash','Laporan Selesai')
 @section('content')
           <div class="col-12">
             <div class="card">
@@ -10,7 +11,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>No Pengaduan</th>
+                    <th>Nomor</th>
                     <th>Nama Pelapor</th>
                     <th>Judul</th>
                     <th>Isi</th>
@@ -55,7 +56,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_pengaduan }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nomor Pengaduan: {{ $data->id_pengaduan }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -67,13 +68,13 @@
               <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
-                  <label>Nama Pelapor</label>
+                  <label>Nama Pelapor:</label>
                   <input type="text" class="form-control" value="{{ $data->nama }}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Judul</label>
+                  <label>Judul:</label>
                   <input type="text" class="form-control" value="{{ $data->judul }}">
                 </div>
               </div>
@@ -82,13 +83,13 @@
               <div class="col-sm-6">
                 <!-- textarea -->
                 <div class="form-group">
-                  <label>Lokasi Kejadian</label>
+                  <label>Lokasi Kejadian:</label>
                   <input type="text" class="form-control" value="{{ $data->lokasi }}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Tgl Kejadian</label>
+                  <label>Tanggal Kejadian:</label>
                   <input type="text" class="form-control" value="{{ $data->tgl_kejadian }}">
                 </div>
               </div>
@@ -96,11 +97,11 @@
 
             <!-- input states -->
             <div class="form-group">
-              <label class="col-form-label" for="inputSuccess"> Isi</label>
+              <label class="col-form-label" for="inputSuccess">Isi:</label>
               <textarea name="" id="" class="form-control" row="7">{{ $data->isi }}</textarea>
             </div>
             <div class="form-group">
-              <label class="col-form-label">Unit</label>
+              <label class="col-form-label">Unit:</label>
               <input type="text" class="form-control" value="{{ $data->nama_div}}">
 
             </div>
@@ -109,7 +110,6 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

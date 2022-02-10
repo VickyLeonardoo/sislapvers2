@@ -53,6 +53,14 @@ class TanggapanModel extends Model
         ->get();
     }
 
+    public function v_tanggapan_pelapor()
+    {
+        return DB::table('tanggapan_user')
+        ->join('pengaduan', 'tanggapan_user.id_pengaduan', '=', 'pengaduan.id_pengaduan')
+        ->join('pelapor','pengaduan.id_pelapor','=','pelapor.id')
+        ->get();
+    }
+
     public function kirim_tanggapan($id,$data)
     {
         DB::table('tanggapan')->where('id_tanggapan',$id)->update($data);
@@ -91,4 +99,8 @@ class TanggapanModel extends Model
         ->get();
    }
 
+   public function tanggapi_tanggapan($data)
+   {
+    DB::table('tanggapan_user')->insert($data);
+   }
 }

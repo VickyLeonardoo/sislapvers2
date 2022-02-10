@@ -1,5 +1,5 @@
 @extends('administrator.template.header')
-@section('title','Laporan Masuk')
+@section('title','Laporan Total')
 @section('content')
 <div class="col-12">
     <div class="card">
@@ -11,7 +11,7 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
-            <th>No Pengaduan</th>
+            <th>Nomor</th>
             <th>Nama Pelapor</th>
             <th>Tgl Laporan</th>
             <th>Judul</th>

@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\LaporanModel;
 use App\Models\TanggapanModel;
+use App\Models\Pengaduan;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmail;
+use App\Mail\TanggapanMail;
+
 
 
 class LaporanController extends Controller
@@ -19,18 +24,14 @@ class LaporanController extends Controller
         $this->TanggapanModel = new TanggapanModel;
     }
 
-    public function simpan_laporan()
+    public function simpan_laporan(Request $request)
     {
-        
         Request()->validate([
             'judul' => 'required',
             'lokasi' => 'required',
             'isi' => 'required',
             'tgl_kejadian' => 'required',
             'unit' => 'required',
-            'foto' => 'required|mimes:jpg,bmp,png,mkv,mp4|max:10000',
-            'foto2' => 'required|mimes:jpg,bmp,png,mkv,mp4|max:10000',
-            'foto3' => 'required|mimes:jpg,bmp,png,mkv,mp4|max:10000',
             'tgl_kejadian' => 'required',
         ],[
             'judul.required' => 'Judul Wajib Diisi',
@@ -38,59 +39,46 @@ class LaporanController extends Controller
             'isi.required' => 'Isi Wajib Diisi',
             'tgl_kejadian.required' => 'Tanggal Wajib Diisi',
             'unit.required' => 'Unit Wajib Diisi',
-            'foto.required' => 'Foto Wajib Diisi',
-            'foto.max' => 'Ukuran Max 10MB',
-            'foto2.max' => 'Ukuran Max 10MB',
-            'foto2.required' => 'Foto Wajib Diisi',
-            'foto3.required' => 'Foto Wajib Diisi',
-            'foto3.max' => 'Ukuran Max 10MB',
         ]);
         
-        $file = Request()->foto;
-        $randomno=rand(0,10000000);
-        $time = time();
-        $exte = $file->GetClientOriginalExtension();
-        $fileName = $time. $randomno. '.' .$exte;
-        $fileNames = $time. $randomno. '.' .$exte;
-        $file->move(public_path('file_laporan'),$fileName);
-
-        $file2 = Request()->foto2;
-        $randomno2=rand(0,10000000);
-        $time2 = time();
-        $exte2 = $file2->GetClientOriginalExtension();
-        $fileNames = $time2. $randomno2. '.' .$exte2;
-        $file2->move(public_path('file_laporan'),$fileNames);
-
-        $file3 = Request()->foto3;
-        $randomno3=rand(0,10000000);
-        $time3 = time();
-        $exte3 = $file3->GetClientOriginalExtension();
-        $fileNamed = $time3. $randomno3. '.' .$exte3;
-        $file3->move(public_path('file_laporan'),$fileNamed);
-
-
-
-        $data = [
+        
+        if($files = $request->file('image')){
+            foreach ($files as $file) {
+                $image_name = md5(rand(1000,10000));
+                $ext = strtolower($file->GetClientOriginalExtension());
+                $image_full_name = $image_name.'.'.$ext;
+                $upload_path = 'file_laporan/';
+                $image_url = $upload_path.$image_full_name;
+                $file->move($upload_path, $image_full_name);
+                $image[] = $image_url;
+            }
+        }
+        Pengaduan::insert([
+            'foto' => implode('|',$image),
+            'status' => 1,
+            'status_tanggapan' => 1,
             'id_pelapor' => Request()->id_pelapor,
-            // 'nama' => Request()->nama,
             'judul' => Request()->judul,
             'lokasi' => Request()->lokasi,
             'isi' => Request()->isi,
             'tgl_kejadian' => Request()->tgl_kejadian,
-            // 'unit' => Request()->unit,
-            // 'kd' => Request()->unit,
             'id_divisi' => Request()->unit,
-            'status' => 1,
-            'status_tanggapan' => 1,
             'tgl_laporan' => Carbon::now()->format('Y-m-d'),
-            'foto' => $fileName,
-            'foto2' => $fileNames,
-            'foto3' => $fileNamed,
-        ];
-        $this->LaporanModel->tambahData($data);
-        return redirect()->route('user')->with('pesan','Data Berhasil Di Tambahkan !! ');
-        
-    
+            
+        ]);
+
+        {
+            $isi_email = [
+                'title' => Request()->judul,
+                'body' => Request()->isi,
+            ];
+
+            $tujuan = DB::table('users')->where('level', '2')->pluck('email');
+            // $tujuan = 'vickyleonardo23@gmail.com';
+            Mail::to($tujuan)->send(new SendEmail($isi_email));
+            return redirect()->route('user')->with('pesan','Data Berhasil Di Tambahkan !! ');
+        }
+
     }
 
     public function update_laporan($id)
@@ -102,10 +90,29 @@ class LaporanController extends Controller
                 'id_divisi' => Request()->unit,
                 'status' => 2,
                 'investigasi' => Request()->investigasi,
+               
             ];
+            
         $this->LaporanModel->ubahData($id,$data);
+
+        $isi_email = [
+            'title' => Request()->judul,
+            'body' => Request()->isi,
+        ];
+
+        if (Request()->investigasi == 2) {
+            $tujuan = DB::table('users')->where('id_divisi', Request()->unit)->pluck('email');
+            // $tujuan = 'vickyleonardo23@gmail.com';
+            Mail::to($tujuan)->send(new SendEmail($isi_email));
+        }else {
+            $tujuan = DB::table('users')->where('level', '3')->pluck('email');
+            // $tujuan = 'vickyleonardo23@gmail.com';
+            Mail::to($tujuan)->send(new SendEmail($isi_email));
+        }
+        
         return redirect()->route('masuk');
         }
+
         elseif (Auth::guard('user')->user()->level == 4) {
             $data = [
                 'status' => 3,
@@ -121,6 +128,13 @@ class LaporanController extends Controller
                 'id_divisi' => Request()->unit,
             ];
         $this->LaporanModel->ubahData($id,$data);
+        $isi_email = [
+            'title' => Request()->judul,
+            'body' => Request()->isi,
+        ];
+        $tujuan = DB::table('users')->where('id_divisi', Request()->unit)->pluck('email');
+            // $tujuan = 'vickyleonardo23@gmail.com';
+            Mail::to($tujuan)->send(new SendEmail($isi_email));
         return redirect()->route('m_masuk')->with('pesan','Laporan Berhasil Diteruskan');
         }
     }
@@ -213,9 +227,20 @@ class LaporanController extends Controller
             ];
             $status = [
                 'status_tanggapan' => 4,
+                'tgl_ditanggapi' => Carbon::now()->format('Y-m-d'),
             ];
+
             $this->TanggapanModel->tanggapi($data);
             $this->TanggapanModel->update_status($id,$status);
+            
+            $tanggapan_email = [
+                'title' => Request()->judul,
+                'body' => Request()->isi,
+            ];
+            $tujuan = DB::table('users')->where('level', '3')->pluck('email');
+            // $tujuan = 'vickyleonardo23@gmail.com';
+            Mail::to($tujuan)->send(new TanggapanMail($tanggapan_email));
+
             return redirect()->route('u_masuk');
         }
         elseif (Auth::guard('user')->user()->level == 3) {
@@ -228,6 +253,8 @@ class LaporanController extends Controller
 
             $status = [
                 'status_tanggapan' => 2,
+                'tgl_ditanggapi' => Carbon::now()->format('Y-m-d'),
+
             ];
             $this->TanggapanModel->tanggapi($data);
             $this->TanggapanModel->update_status($id,$status);
@@ -262,7 +289,17 @@ class LaporanController extends Controller
         ];
 
         $this->TanggapanModel->kembalikanTanggapan($data);  
-        $this->TanggapanModel->kirim_tanggapan($id,$update);     
+        $this->TanggapanModel->kirim_tanggapan($id,$update); 
+
+        $tanggapan_email = [
+            'title' => Request()->judul,
+            'body' => Request()->isi,
+        ];
+
+        $tujuan = DB::table('users')->where('id_divisi', Request()->id_divisi)->pluck('email');
+        // $tujuan = 'vickyleonardo23@gmail.com';
+        Mail::to($tujuan)->send(new TanggapanMail($tanggapan_email));  
+        
         return redirect()->route('m_tanggapan');
     }
 
@@ -281,6 +318,19 @@ class LaporanController extends Controller
 
         $this->TanggapanModel->tanggapi($data);
         $this->TanggapanModel->updateTanggapan($id,$update);
+        return redirect()->route('u_tanggapan');
+    }
+
+    public function perbaiki_tanggapan_pelapor($id)
+    {
+        $data = [
+            'tanggapan' => Request()->tanggapan,
+            'id_pengaduan' => Request()->id_pengaduan,
+            'tgl_tanggapan'=> Carbon::now()->format('Y-m-d'),
+            'status_tanggapan' => 4,
+        ];
+        
+        $this->TanggapanModel->tanggapi($data);
         return redirect()->route('u_tanggapan');
     }
 

@@ -11,7 +11,7 @@ class AdministratorModel extends Model
     public function v_data_admin()
     {
         return DB::table('users')
-        ->where('level','2')
+        ->whereIn('level',[99,2])
         ->get();
     }
 

@@ -1,7 +1,7 @@
 @extends('user.template.header')
 @section('content')
 
-<h6 style="color: red;">*Bila Kosong Maka Belum Ditanggapi!</h6>
+<h6 style="color: red;">*Bila Kosong Maka Belum Ditanggapi</h6>
 <div class="col-md-12">
     <!-- general form elements -->
     <div class="card card-info">

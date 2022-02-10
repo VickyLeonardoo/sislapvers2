@@ -1,5 +1,5 @@
 @extends('administrator.template.header')
-@section('title','Laporan Ditolak')
+@section('title','Hapus Laporan')
 @section('content')
 
 <div class="col-12">
@@ -19,7 +19,7 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
           <tr>
-            <th>No Pengaduan</th>
+            <th>Nomor</th>
             <th>Nama Pelapor</th>
             <th>Tgl Laporan</th>
             <th>Judul</th>
@@ -77,30 +77,4 @@
       </div>
   </div>
   @endforeach
-{{-- 
-  @foreach ($laporan as $data)
-  <div class="modal modal-danger fade" id="delete">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <i class="fas fa-exclamation-triangle"></i>
-            <i class="fas fa-exclamation-triangle"></i>
-            <i class="fas fa-exclamation-triangle"></i>
-            <i class="fas fa-exclamation-triangle"></i>
-            <i class="fas fa-exclamation-triangle"></i>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span></button>
-          </div>
-          <div class="modal-body">
-            <h1>Ingin Menghapus Seluruh Laporan?</h1>
-            <p>Ini akan menghapus seluruh laporan yang ada</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">No</button>
-            <a href="/administrator/hapus-laporan-total" class="btn btn-outline">Yes</a>
-          </div>
-        </div>
-      </div>
-  </div> 
-  @endforeach --}}
 @endsection

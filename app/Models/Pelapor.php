@@ -23,6 +23,10 @@ class Pelapor extends Authenticatable
 
     ];
 
+    public function verifyUser(){
+        return $this->hasOne('App\Models\VerifyUser');
+    }
+
     protected $hidden = [
         'password',
         'remember_token',

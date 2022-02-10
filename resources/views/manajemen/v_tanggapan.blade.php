@@ -1,4 +1,5 @@
 @extends('manajemen.template.header')
+@section('dash','Tanggapan Masuk')
 @section('content')
           <div class="col-12">
             <div class="card">
@@ -10,7 +11,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>No Pengaduan</th>
+                    <th>Nomor</th>
                     {{-- <th>Nama Pelapor</th> --}}
                     <th>Judul</th>
                     <th>Isi</th>
@@ -59,7 +60,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_pengaduan }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nomor Pengaduan : {{ $data->id_pengaduan }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -77,7 +78,7 @@
               {{-- </div> --}}
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Judul</label>
+                  <label>Judul:</label>
                   <input type="text" class="form-control" value="{{ $data->judul }}">
                 </div>
               </div>
@@ -86,13 +87,13 @@
               <div class="col-sm-6">
                 <!-- textarea -->
                 <div class="form-group">
-                  <label>Lokasi Kejadian</label>
+                  <label>Lokasi Kejadian:</label>
                   <input type="text" class="form-control" value="{{ $data->lokasi }}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Tgl Kejadian</label>
+                  <label>Tgl Kejadian:</label>
                   <input type="text" class="form-control" value="{{ $data->tgl_kejadian }}">
                 </div>
               </div>
@@ -100,48 +101,35 @@
 
             <!-- input states -->
             <div class="form-group">
-              <label class="col-form-label" for="inputSuccess"> Isi</label>
+              <label class="col-form-label" for="inputSuccess">Isi:</label>
               <textarea name="" id="" class="form-control" row="7">{{ $data->isi }}</textarea>
             </div>
             
+            @php
+               $image = DB::table('pengaduan')->where('id_pengaduan',$data->id_pengaduan)->first();
+              $images = explode('|',$image->foto)
+            @endphp
             <div class="row">
+            @foreach ($images as $item)
               <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
                     <label>Bukti Foto:</label><br>
-                <img src="{{ url('file_laporan/'.$data->foto) }}" width="400">
+                    <iframe src="{{ URL::to($item)}}" width="100%" height="500"></iframe>
                 </div>
               </div>
-              <div class="col-sm-6">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Bukti Foto:</label><br>
-                <img src="{{ url('file_laporan/'.$data->foto2) }}" width="400">
-                </div>
-              </div>
-
-              <div class="col-sm-6">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Bukti Foto:</label><br>
-                <img src="{{ url('file_laporan/'.$data->foto3) }}" width="400">
-                </div>
-              </div>
+              @endforeach
             </div>
               <!-- textarea -->
               <div class="form-group">
-                <label>Unit</label>
+                <label>Unit:</label>
                 <select name="unit" class="form-control" id="">
                   <option value="">{{ $data->nama_div}}</option>
                 </select>
               </div>
-            
-            
-          
         </div>
       </div>
       <div class="modal-footer">
-        <input type="submit" class="btn btn-primary" value="Simpan">
       </form>
       </div>
     </div>
@@ -154,7 +142,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_pengaduan }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nomor Pengaduan: {{ $data->id_pengaduan }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -166,14 +154,15 @@
             <!-- input states -->
             <input type="hidden" name="id_pengaduan" value="{{ $data->id_pengaduan }}">
             <input type="hidden" name="id_tanggapan" value="{{ $data->id_tanggapan }}">
+            <input type="hidden" name="id_divisi" value="{{ $data->id_divisi }}">
 
             <div class="form-group">
-              <label class="col-form-label" for="inputSuccess">Tanggapan Dari Unit</label>
+              <label class="col-form-label" for="inputSuccess">Tanggapan Dari Unit:</label>
               <textarea name="tanggapan" disabled id="" class="form-control" row="7">{{ $data->tanggapan }}</textarea>
             </div>
             
             <div class="form-group">
-              <label class="col-form-label" for="inputSuccess">Komentar dari Manajemen</label>
+              <label class="col-form-label" for="inputSuccess">Komentar dari Manajemen:</label>
               <textarea name="komentar" id="" class="form-control" rows="5"></textarea>
             </div>
         </div>

@@ -19,7 +19,7 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>SILP</b></a>
+      <a href="../../index2.html" class="h1"><b>SILAP</b></a>
     </div>
     <div class="card-body">
 
@@ -31,7 +31,7 @@
           @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" autocomplete="off" placeholder="Full name" name="nama" value="{{ old('nama') }}">
+          <input type="text" class="form-control" autocomplete="off" placeholder="Nama Lengkap" name="nama" value="{{ old('nama') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -96,7 +96,7 @@
           @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Retype password" name="password_confirmation">
+          <input type="password" class="form-control" placeholder="Ulangi Password" name="password_confirmation">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -108,7 +108,7 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" class="btn btn-primary btn-block">Daftar</button>
           </div>
           <div class="col-4">
           </div>

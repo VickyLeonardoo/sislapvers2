@@ -13,22 +13,23 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('assets/login') }}/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Style -->
     <link rel="stylesheet" href="{{ asset('assets/login') }}/css/style.css">
     <link rel="icon" href="{{ asset('assets/login') }}/images/poltek.png">
+  <link rel="stylesheet" href="{{ asset('assets') }}/progress/style.css">
+
+    
     <title>SILP</title>
   </head>
   <body>
-  
-
     
   <div class="content">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <img src="{{ asset('assets/login') }}/images/poltek.png" alt="Image" class="img-fluid">
-          <span><b>SILP</b></span> adalah Sistem Lapor Polibatam yang merupakan Website untuk menampung pengaduan serta aspirasi terhadap internal ataupun eksternal Polibatam.Program ini bertujuan untuk menningkatkan mutu layanan yang ada pada <span>POLIBATAM</span>
+          <img src="{{ asset('assets/login') }}/images/polibatam_logo.png" width="400" class="img-fluid"><br>
+          Lapor <b>Polibatam</b> adalah layanan pengaduan online masyarakat.
         </div>
         <div class="col-md-6 contents">
           <div class="row justify-content-center">
@@ -43,6 +44,10 @@
               <div class="alert alert-success alert-dismissible">
                   <h4><i class="icon fa fa-check"></i>Berhasil</h4>
                   {{ session('berhasil') }}
+              </div>@elseif(session('message'))
+              <div class="alert alert-success alert-dismissible">
+                  <h4><i class="icon fa fa-check"></i>Berhasil</h4>
+                  {{ session('message') }}
               </div>
               @endif
               <h3>LOGIN</h3>
@@ -85,6 +90,30 @@
         </div>
         
       </div>
+    </div>
+    
+      <!-- Footer Links -->
+    
+
+      <!-- Copyright -->
+      {{-- <div class="footer-copyright text-center py-3 "> --}}
+
+        {{-- <img src="{{ asset('assets/login') }}/images/panudan.png" class="img-fluid"><br> --}}
+        <div class="progress-container container-fluid">
+          <div class="progress" id="progress"></div>
+          <div class="circle active"><i class="fas fa-edit"></i></div>
+          <div class="circle active"><i class="fas fa-share"></i></div>
+          <div class="circle active"><i class="fas fa-comments"></i></div>
+          <div class="circle active"><i class="fas fa-comment"></i></div>
+          <div class="circle active"><i class="fas fa-check"></i></div>
+      </div>
+      <div class="progress-container1 container-fluid">
+        <div class="progress" id="progress"></div>
+        <div>Membuat Laporan</div>
+        <div>Laporan Diverifikasi</div>
+        <div>Laporan Ditanggapi</div>
+        <div>Respon Terhadap Tanggapan</div>
+        <div>Laporan Selesai</div>
     </div>
   </div>
 

@@ -9,7 +9,7 @@
                   <p>Dashboard</p>
                 </a>
               </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
@@ -38,6 +38,67 @@
                 </a>
               </li>
               
+            </ul>
+          </li> --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Laporan
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/laporan/masuk" class="nav-link {{ request()->is('laporan/masuk') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Masuk</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/laporan/proses" class="nav-link {{ request()->is('laporan/proses') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Diteruskan</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="/laporan/ditolak" class="nav-link {{ request()->is('laporan/ditolak') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Ditolak</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="/laporan/total" class="nav-link {{ request()->is('laporan/total') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Laporan Total</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    Laporan Selesai
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="/laporan/selesai-puas" class="nav-link {{ request()->is('laporan/selesai-puas') ? 'active' : '' }}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Laporan Puas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/laporan/selesai-tidak-puas" class="nav-link {{ request()->is('laporan/selesai-tidak-puas') ? 'active' : '' }}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Laporan Tidak Puas</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

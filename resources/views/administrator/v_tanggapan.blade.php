@@ -18,9 +18,7 @@
         <form method="POST">
           @csrf
       <div class="modal-footer">
-          <input type="submit" class="btn btn-info" value="Puas" formaction="/laporan/puas/{{ $data->id_pengaduan }}">
-          <input type="submit" class="btn btn-primary" value="Tidak Puas" formaction="/laporan/kurang/{{ $data->id_pengaduan }}">
-          <a href="/daftar/laporan" class="btn btn-secondary" data-dismiss="modal">Kembali</a>
+          <a href="/administrator/laporan/selesai" class="btn btn-secondary" data-dismiss="modal">Kembali</a>
         </div>
       </form>
     </div>

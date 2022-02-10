@@ -34,6 +34,10 @@ class AuthController extends Controller
                 return view('masyarakat');
                  
             }elseif (Auth::guard('pelapor')->attempt($kredensil)) {
+                if (Auth::guard('pelapor')->user()->email_verified_at == null) {
+                    Auth::logout();
+                    return \redirect(route('login'))->with('pesan', 'Please verify your email to continue');
+                }
                 $user = Auth::guard('pelapor')->user();
                 if ($user->level == '999') {
                     return redirect()->route('user');

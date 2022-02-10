@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand-md navbar-light navbar-info">
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-info ">
     <div class="container">
       <a href="/lapor" class="navbar-brand">
         <img src="{{ asset('assets') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">

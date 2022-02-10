@@ -19,6 +19,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('assets') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('assets') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="{{ asset('assets') }}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{ asset('assets') }}/frame/style.css">
+
 </head>
 <body class="hold-transition layout-top-nav">
 <div class="wrapper">
@@ -40,13 +42,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
-      
     <!-- Main content -->
     <div class="content">
+
+            
       <div class="container">
         <div class="row">
           <!-- /.col-md-6 -->
-          @yield('content')
+         @yield('content')
         </div>
       </div><!-- /.container-fluid -->
     </div>

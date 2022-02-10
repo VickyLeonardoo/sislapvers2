@@ -1,4 +1,5 @@
 @extends('unit.template.header')
+@section('dash','Laporan Masuk')
 @section('content')
           <div class="col-12">
             <div class="card">
@@ -10,27 +11,28 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>No Pengaduan</th>
+                    <th>Nomor</th>
                     <th>Nama Pelapor</th>
                     <th>Judul</th>
                     <th>Isi</th>
                     <th>Aksi</th>
+                    <th>Status</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php $i=1?>
+                    
                     @foreach ($laporan as $data)
+                    <?php
+                    $startdate=strtotime($data->tgl_ditanggapi);
+                    $enddate=strtotime("+11 days", $startdate);
+                    ?>
                         <tr>
-                          @if ($data->status_tanggapan == 1)
-                          <td>{{ $data->id_pengaduan }}</td>
-                          @elseif($data->status_tanggapan == 2)
-                          <td>{{ $data->id_pengaduan }} <i class="far fa-check-circle"></i></td>    
-                          @else 
-                          <td>{{ $data->id_pengaduan }} <i class="far fa-check-circle"></i></td>                          
-                          @endif
+                          <td>{{ $data->id_pengaduan }}</td>                         
                           <td>{{ $data->nama }}</td>
                           <td>{{ $data->judul }}</td>
                           <td>{{ $data->isi }}</td>
+                          
                           <td>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{ $data->id_pengaduan }}">
@@ -41,11 +43,15 @@
                               Tanggapi
                             </button>
                           </td>
-                          
+                          @if ($data->status_tanggapan == 1)
+                          <td>Belum Ditanggapi</td>
+                          @else
+                          <td>Ditanggapi pada {{ date("d-M-y",$startdate) }} Batas Konfirmasi {{ date("d-M-y",$enddate) }}</td>
+
+                          {{-- <td>Ditanggapi pada tanggal {{ date('d-M-y', strtotime($data->tgl_laporan)) }}</td> --}}
+                          @endif
                         </tr>
                     @endforeach
-                    
-
                     </tr>
                   </tbody>
                 </table>
@@ -65,7 +71,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_pengaduan }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nomor Pengaduan: {{ $data->id_pengaduan }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -78,13 +84,13 @@
               <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
-                  <label>Nama Pelapor</label>
+                  <label>Nama Pelapor:</label>
                   <input type="text" class="form-control" value="{{ $data->nama }}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Judul</label>
+                  <label>Judul:</label>
                   <input type="text" class="form-control" value="{{ $data->judul }}">
                 </div>
               </div>
@@ -93,40 +99,32 @@
               <div class="col-sm-6">
                 <!-- textarea -->
                 <div class="form-group">
-                  <label>Lokasi Kejadian</label>
+                  <label>Lokasi Kejadian:</label>
                   <input type="text" class="form-control" value="{{ $data->lokasi }}">
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Tgl Kejadian</label>
+                  <label>Tanggal Kejadian:</label>
                   <input type="text" class="form-control" value="{{ $data->tgl_kejadian }}">
                 </div>
               </div>
             </div>
+            @php
+               $image = DB::table('pengaduan')->where('id_pengaduan',$data->id_pengaduan)->first();
+              $images = explode('|',$image->foto)
+            @endphp
             <div class="row">
+            @foreach ($images as $item)
               <div class="col-sm-6">
                 <!-- text input -->
                 <div class="form-group">
                     <label>Bukti Foto:</label><br>
-                <img src="{{ url('file_laporan/'.$data->foto) }}" width="400">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Bukti Foto:</label><br>
-                <img src="{{ url('file_laporan/'.$data->foto2) }}" width="400">
-                </div>
-              </div>
+                    <iframe src="{{ URL::to($item)}}" width="100%" height="500"></iframe>
 
-              <div class="col-sm-6">
-                <!-- text input -->
-                <div class="form-group">
-                    <label>Bukti Foto:</label><br>
-                <img src="{{ url('file_laporan/'.$data->foto3) }}" width="400">
                 </div>
               </div>
+              @endforeach
             </div>
             <!-- input states -->
             <div class="form-group">
@@ -149,7 +147,7 @@
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">NO Pengaduan : {{ $data->id_pengaduan }}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Nomor Pengaduan : {{ $data->id_pengaduan }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -161,7 +159,7 @@
             <!-- input states -->
             <input type="hidden" name="id" value="{{ $data->id_pengaduan }}">
             <div class="form-group">
-              <label class="col-form-label" for="inputSuccess">Tanggapan</label>
+              <label class="col-form-label" for="inputSuccess">Tanggapan:</label>
               <textarea name="tanggapan" id="" class="form-control" row="7"></textarea>
             </div>
         </div>
@@ -174,5 +172,7 @@
   </div>
 </div>
 @endforeach
+
+
 </div>
 @endsection

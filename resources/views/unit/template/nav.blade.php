@@ -50,6 +50,12 @@
                   <p>Tanggapan Ditolak</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/unit/tanggapan/pelapor" class="nav-link {{ request()->is('unit/tanggapan/pelapor') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tanggapan Pelapor</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

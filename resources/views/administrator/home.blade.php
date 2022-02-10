@@ -1,6 +1,153 @@
 @extends('administrator.template.header')
 @section('content')
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Petugas</h5>
 
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+     
+      <!-- ./card-body -->
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-sm-3 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-success">{{ $admin }}</span>
+              <h5 class="description-header">Jumlah Admin</h5>
+              <a href="#exampleModalAdmin" class="small-box-footer" data-toggle="modal" data-target="#exampleModalAdmin">Tambah Admin <i class="fas fa-plus"></i></a>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-3 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-warning">{{ $unit }}</span>
+              <h5 class="description-header">Jumlah Unit</h5>
+      <a href="#exampleModalUnit" class="small-box-footer" data-toggle="modal" data-target="#exampleModalUnit">Tambah Unit <i class="fas fa-plus"></i></a>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-3 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-success">{{ $manajemen }}</span>
+              <h5 class="description-header">Jumlah Manajemen</h5>
+      <a href="#exampleModalMan" class="small-box-footer" data-toggle="modal" data-target="#exampleModalMan">Tambah Manajemen <i class="fas fa-plus"></i></a>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-3 col-6">
+            <div class="description-block">
+              <span class="description-percentage text-danger">{{ $divisi }}</span>
+              <h5 class="description-header">Jumlah Divisi</h5>
+      <a href="#exampleModalDiv" class="small-box-footer" data-toggle="modal" data-target="#exampleModalDiv">Tambah Divisi <i class="fas fa-plus"></i></a>
+
+            </div>
+            <!-- /.description-block -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.card-footer -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Rekap</h5>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+            <i class="fas fa-minus"></i>
+          </button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+      <!-- /.card-header -->
+     
+      <!-- ./card-body -->
+      <div class="card-footer">
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-sm-4 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-warning">{{ $tolak }}</span>
+              <h5 class="description-header">Laporan Ditolak</h5>
+              <a href="/administrator/laporan/ditolak" class="small-box-footer">More Info <i class="fas fa-arrow-circle-right"></i></a>
+    <hr>       
+    </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-success">{{ $masuk }}</span>
+              <h5 class="description-header">Laporan Masuk</h5>
+              <a href="/administrator/laporan/masuk" class="small-box-footer">More Info<i class="fas fa-arrow-circle-right"></i></a>
+    <hr>      
+    </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 col-6">
+            <div class="description-block">
+              <span class="description-percentage text-danger">{{ $proses }}</span>
+              <h5 class="description-header">Laporan Diproses</h5>
+              <a href="/administrator/laporan/proses" class="small-box-footer">More Info<i class="fas fa-arrow-circle-right"></i></a>
+<hr>
+            </div>
+            <!-- /.description-block -->
+          </div>
+          <div class="col-sm-4 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-warning">{{ $selesai }}</span>
+              <h5 class="description-header">Laporan Puas</h5>
+      <a href="/administrator/laporan/selesai" class="small-box-footer">More Info<i class="fas fa-arrow-circle-right"></i></a>
+    <hr>       
+    </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 col-6">
+            <div class="description-block border-right">
+              <span class="description-percentage text-success">{{ $respon_tk }}</span>
+              <h5 class="description-header">Laporan Tidak Puas</h5>
+              <a href="/administrator/data/divisi" class="small-box-footer">More Info<i class="fas fa-arrow-circle-right"></i></a>
+    <hr>        
+    </div>
+            <!-- /.description-block -->
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 col-6">
+            <div class="description-block">
+              <span class="description-percentage text-danger">{{ $total }}</span>
+              <h5 class="description-header">Laporan Total</h5>
+              <a href="/administrator/laporan-total" class="small-box-footer">More Info<i class="fas fa-arrow-circle-right"></i></a>
+<hr>
+            </div>
+            <!-- /.description-block -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.card-footer -->
+    </div>
+    <!-- /.card -->
+  </div>
+  {{-- <!-- /.col -->
 <div class="col-lg-3 col-6">
     <!-- small box -->
     <div class="small-box bg-dark">
@@ -61,9 +208,9 @@
       <a href="#exampleModalDiv" class="small-box-footer" data-toggle="modal" data-target="#exampleModalDiv">Tambah Divisi <i class="fas fa-plus"></i></a>
       <a href="/administrator/data/divisi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-  </div> 
+  </div>  --}}
 
-  <div class="col-lg-3 col-6">
+  {{-- <div class="col-lg-4 col-6">
     <!-- small box -->
     <div class="small-box bg-warning">
       <div class="inner">
@@ -78,7 +225,7 @@
     </div>
   </div>
   <!-- ./col -->
-  <div class="col-lg-3 col-6">
+  <div class="col-lg-4 col-6">
     <!-- small box -->
     <div class="small-box bg-info">
       <div class="inner">
@@ -92,7 +239,7 @@
       <a href="/administrator/laporan/masuk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
-  <div class="col-lg-3 col-6">
+  <div class="col-lg-4 col-6">
     <!-- small box -->
     <div class="small-box bg-primary">
       <div class="inner">
@@ -105,8 +252,8 @@
       </div>
       <a href="/administrator/laporan/proses" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-  </div>  
-  <div class="col-lg-3 col-6">
+  </div>   --}}
+  {{-- <div class="col-lg-4 col-6">
     <!-- small box -->
     <div class="small-box bg-success">
       <div class="inner">
@@ -120,7 +267,7 @@
       <a href="/administrator/laporan/selesai" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div> 
-  <div class="col-lg-3 col-6">
+  <div class="col-lg-4 col-6">
     <!-- small box -->
     <div class="small-box bg-danger">
       <div class="inner">
@@ -134,7 +281,7 @@
       <a href="/administrator/data/divisi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div> 
-  <div class="col-lg-3 col-6">
+  <div class="col-lg-4 col-6">
     <!-- small box -->
     <div class="small-box bg-success">
       <div class="inner">
@@ -147,7 +294,7 @@
       </div>
       <a href="/administrator/laporan-total" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
-  </div> 
+  </div>  --}}
   
 {{-- Modal Admin --}}
 <div class="modal fade" id="exampleModalAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -220,7 +367,6 @@
       </div>
     </div>
   </div>
-</div>
 </div>
 
 {{-- Modal Unit --}}
@@ -295,7 +441,6 @@
     </div>
   </div>
 </div>
-</div>
 
 {{-- Modal Manajemen --}}
 <div class="modal fade" id="exampleModalMan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -369,7 +514,6 @@
     </div>
   </div>
 </div>
-</div>
 
 {{-- Modal Divisi --}}
 <div class="modal fade" id="exampleModalDiv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -411,5 +555,6 @@
     </div>
   </div>
 </div>
-</div>
+
+
 @endsection
